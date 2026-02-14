@@ -1,42 +1,42 @@
-# 구독멍 (GudokMeong)
+# Subscription Mong (구독멍)
 
-구독멍 서비스 재시작을 위한 부트스트랩 저장소다.
-현재는 팀 운영 문서와 MVP 기술 기준을 먼저 고정하고, Flutter Web 앱 구현은 다음 단계에서 진행한다.
+This is the bootstrap repository for restarting the Subscription Mong service.
+Current focus is to lock down team operating documents and MVP technical principles first; Flutter Web app implementation will continue in the next phase.
 
-## 재정의 방향
+## Reframing Direction
 
-1. 서비스 명칭은 `구독멍`으로 유지한다.
-2. 브랜딩/디자인을 기존 자산에서 분리해 새 기준으로 다시 설계한다.
-3. 기술 구조는 `Flutter Web 단일 앱`으로 고정한다.
-4. 백엔드 서버/DB 없이 localStorage로만 데이터 저장을 처리한다.
-5. 외부 연동(API, 배치 워커, 서드파티 SDK)은 MVP 범위에서 제외한다.
+1. Keep the service name as `구독멍`.
+2. Separate branding/design from existing assets and redefine with a new standard.
+3. Fix architecture to a single Flutter Web app.
+4. Store all data in `localStorage` with no backend server or database.
+5. Exclude external integrations (API, batch workers, third-party SDKs) from MVP scope.
 
-## MVP 기술 원칙
+## MVP Technical Principles
 
-- 런타임: Flutter Web
-- 데이터 저장: 브라우저 localStorage
-- 데이터 동기화: 없음 (단말 로컬 단독)
-- 인증/권한: 없음 (단일 로컬 사용자 가정)
-- 네트워크 의존: 없음
+- Runtime: Flutter Web
+- Data persistence: Browser `localStorage`
+- Data sync: None (local-device only)
+- Auth / authorization: None (single local user assumption)
+- Network dependency: None
 
-## 앱 기능 범위 (초기)
+## Initial App Scope
 
-- 구독 항목 생성/수정/삭제
-- 구독 상태(활성/중지/검토) 관리
-- 결제 예정일/금액 목록 조회
-- 로컬 데이터 백업/복구(JSON import/export)
+- Create / update / delete subscription items
+- Manage subscription states (`active`, `paused`, `review`)
+- View upcoming payment date and amount lists
+- Local backup/restore (JSON import/export)
 
-## 비범위 (MVP 제외)
+## Out of Scope (MVP Exclusion)
 
-- 서버 API
-- 데이터베이스
-- 푸시 알림/배치 작업
-- 외부 카탈로그/가격 수집 연동
-- 결제사/로그인 연동
+- Server APIs
+- Database
+- Push notifications / batch jobs
+- External catalog / price ingestion integrations
+- Payment processor / login integrations
 
-## 문서 기준 경로
+## Documentation Paths
 
-- 운영 기준: `.codex/agents/team.md`
-- 실행 런북: `.codex/agents/runbook.md`
-- 백로그: `.codex/TODO/backlog.md`
-- 변경 이력: `.codex/changelog/CHANGELOG.md`
+- Operating standards: `.codex/agents/team.md`
+- Execution runbook: `.codex/agents/runbook.md`
+- Backlog: `.codex/TODO/backlog.md`
+- Changelog: `.codex/changelog/CHANGELOG.md`

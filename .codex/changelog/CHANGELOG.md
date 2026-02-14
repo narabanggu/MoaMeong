@@ -1,10 +1,10 @@
-# 변경 이력
+# Changelog
 
-형식: 날짜 / 변경 요약 / 담당
+Format: Date / Summary / Owner
 
-## 항목
+## Entries
 
-- 2026-02-14 / 전략멍, 리서치멍, 카피멍, 코어멍, 데이터멍 해고 반영 및 운영 체계를 6인 구조로 재편 / 리더멍
-- 2026-02-14 / 역할 체계를 M Leadership, M Branding, M UX, M App, M Risk 기준으로 재정렬 / 리더멍
-- 2026-02-14 / 3D 전담 인원(쓰리디멍, 장인멍, 테크멍) 제거 및 M App 체계로 재편 / 리더멍
-- 2026-02-14 / 구독멍 서비스 기술 기준을 Flutter Web + localStorage + 무백엔드/무DB/외부연동 0으로 고정 / 리더멍
+- 2026-02-14 / Removed 전략멍, 리서치멍, 카피멍, 코어멍, 데이터멍 and restructured operations into 6-person model / 리더멍
+- 2026-02-14 / Reframed role structure to M Leadership, M Branding, M UX, M App, M Risk / 리더멍
+- 2026-02-14 / Removed 3D-only roles (쓰리디멍, 장인멍, 테크멍) and reorganized into M App structure / 리더멍
+- 2026-02-14 / Fixed MVP technical baseline to Flutter Web + localStorage + no backend/no DB/no external integration / 리더멍

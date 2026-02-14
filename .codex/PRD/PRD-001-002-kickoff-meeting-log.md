@@ -1,49 +1,58 @@
-# PRD-001 / PRD-002 개발전 팀회의 로그
+# PRD-001 / PRD-002 Pre-Development Meeting Log
 
-## 회의 메타
-- 일시: 2026-02-14 (병렬 회의 시행)
-- 형태: 병렬 킥오프 1회 (공통 → 트랙 A/B 병렬 → 통합)
-- 참석자: 사용자, 리더멍, 브랜딩멍, 뷰티멍, 픽셀멍, 체크멍, 가드멍
+## Meeting Metadata
 
-## 공통 킥오프 정렬
-- 공통 원칙: 사용자 노출 문구 한글, 내부 식별자 영문
-- 기술 경계: Flutter Web 단일 앱 + localStorage, 백엔드/DB/외부 연동 0
-- 게이트 체인: 체크멍 → 가드멍 → 리더멍
-- 사용자 승인 조건: PRD별 blocker 0 + 문서 정합성 충족
+- Date: 2026-02-14 (parallel kickoff executed)
+- Format: one parallel kickoff (`common -> track A/B parallel -> integration`)
+- Participants: 사용자, 리더멍, 브랜딩멍, 뷰티멍, 픽셀멍, 체크멍, 가드멍
 
-## 트랙 A (브랜딩): PRD-001 핵심 합의
-- 톤 축: 신뢰성 / 공감 / 명료성
-- 감정 강도: 보통 (과도한 자극/공포/과장 표현 제외)
-- 민감표현 대응: 오해성, 과장성, 과도한 공감 연출은 즉시 보류 항목으로 분리
-- 적용 범위: 알림/안내/화면 문구, 버튼/라벨, 상태 메시지
-- 산출물 형식: 문구 금칙어 1차본, 톤 가드레일 초안, 컴포넌트 기본 규칙 초안
+## Common Alignment
 
-## 트랙 B (아이데이션): PRD-002 후보 평가
-- 후보 3개 요구: 완료 (최초 정렬 후 PRD-002에 반영)
-- 우선 선별 기준: 가치 > 난이도 > 리스크
-- 후보군 제안:
-  - C1: 구독 잔여일/금액 대시보드
-  - C2: 구독 변경/해지 가이드 허브
-  - C3: 월간/주간 비용 요약 + 알림 미리보기 플로우
-- MVP 핵심 화면: 3개에서 시작(대시보드, 알림, 가이드)
-- 저장 정책: 백엔드/DB 미사용 시 localStorage 우선, 키 스키마/버전 정책 별도 문서화
+- Common principle: user-facing copy in Korean, internal identifiers in English
+- Technical boundary: single Flutter Web app + localStorage, no backend / DB / external integration
+- Gate chain: 체크멍 -> 가드멍 -> 리더멍
+- User approval condition: blockers = 0 per PRD and documentation consistency
 
-## 통합 정렬
-- 충돌 해소: 브랜딩/UX 메시지 과도성 이슈는 PRD-001 가이드로 정합
-- 공통 blocker: 외부 연동 의존 기능은 제외
-- 다음 조치:
-  - PRD-001 산출물에서 문구/컴포넌트 규칙을 토대로 PRD-002 적용
-  - PRD-002 후보별 상세 요구사항을 다음 PRD로 분해
+## Track A (Branding): PRD-001 Consensus
 
-## 액션 오너/기한
-- 브랜딩멍: PRD-001 톤/문구 가이드 초안 작성(24시간)
-- 픽셀멍: PRD-002 MVP 화면 구조 초안(48시간)
-- 뷰티멍: 후보 C1~C3 핵심 화면 가독성 기준 적용 초안(48시간)
-- 체크멍: PRD-001/002 게이트 체크리스트 적용(진행 즉시)
-- 가드멍: 리스크 분류표 초기안(24시간)
-- 리더멍: 병합 정리 및 사용자 승인 요청
+- Tone axis: trust / empathy / clarity
+- Emotional intensity: normal (exclude overstimulation, fear, overstatement)
+- Sensitive language: move misunderstanding/overstatement/overly emotional framing to hold list
+- Scope: alerts / guides / screen copy / button labels / status messages
+- Deliverables: draft forbidden words, tone guardrails, base component rules
 
-## 완료 후 보완 반영 규칙
-- 미해결 블로커가 존재하면 PRD별 다음 단계 착수 보류
-- 회고 반영 항목은 `.codex/TODO/backlog.md`의 `개발전 회의 반영` 항목으로 즉시 이관
-- 다음 피쳐 착수 전 승인 루프에 반영
+## Track B (Ideation): PRD-002 Candidate Evaluation
+
+- Requirement met: 3 candidates selected
+- Priority rule: value > difficulty > risk
+- Candidate set:
+  - C1: remaining-days / amount dashboard
+  - C2: change/cancel guide hub
+  - C3: weekly/monthly summary + alert preview flow
+- MVP core screens: start with 3 screens (dashboard, alerts, guide)
+- Storage policy: localStorage-first when no backend/DB, with separate key schema/version policy docs
+- Design decision: keep `summary + urgency indicator + action guidance` as core to avoid Todo-only drift
+
+## Integration Alignment
+
+- Conflict resolution: use PRD-001 guide for branding/UX tone conflicts
+- Shared blockers: exclude any feature requiring external integration
+- Shared blockers: exclude login/auth/account/backend-dependent features
+- Next actions:
+  - Apply PRD-001 copy/component rules to PRD-002
+  - Decompose PRD-002 candidate requirements into next PRD
+
+## Action Owners / Due Dates
+
+- 브랜딩멍: draft PRD-001 tone/copy guide (24h)
+- 픽셀멍: draft PRD-002 MVP screen structure (48h)
+- 뷰티멍: draft C1~C3 readability standard (48h)
+- 체크멍: apply PRD-001/002 gate checklist immediately
+- 가드멍: draft risk classification table (24h)
+- 리더멍: consolidate and request user approval
+
+## Post-meeting Carryover Rules
+
+- If blockers remain unresolved, pause start of the next PRD step.
+- Move retrospective follow-up items immediately to `.codex/TODO/backlog.md` under `pre-development carryover`.
+- Apply these items in the approval loop before starting next feature.

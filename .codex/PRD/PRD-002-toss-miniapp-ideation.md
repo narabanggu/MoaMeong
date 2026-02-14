@@ -1,79 +1,169 @@
-# PRD-002: Flutter 기반 토스 미니앱 출시를 위한 앱 아이데이션
+# PRD-002: Ideation for a Flutter-based Toss Miniapp
 
-## 문서 정보
+## Document Info
 - PRD ID: PRD-002
-- 작성일: 2026-02-14
-- 담당: 리더멍, 픽셀멍, 뷰티멍, 브랜딩멍, 체크멍, 가드멍
-- 관련 에이전트: 리더멍, 픽셀멍, 뷰티멍
+- Created: 2026-02-14
+- Owners: 리더멍, 픽셀멍, 뷰티멍, 브랜딩멍, 체크멍, 가드멍
+- Related Agents: 리더멍, 픽셀멍, 뷰티멍
 
-## 1) 목적
-토스 미니앱 출시 관점에서, 구독멍이 해결해야 할 사용자 문제를 한 개 MVP 앱 컨셉으로 수렴한다.
+## 1) Purpose
 
-## 2) 범위
-- 앱 아이디어 후보 생성(최소 3개)
-- 후보별 가치/실행 난이도/리스크 점수화
-- 실행 우선순위가 높은 앱 1개 선정
-- 토스 미니앱에 맞는 핵심 화면 구성(3~5개) 정의
-- Flutter Web + localStorage 기준의 MVP 기능 분해
-- 다음 PRD(상세 기능) 작성에 필요한 요구사항 초안 추출
+From a Toss miniapp perspective, converge on one MVP app concept for the Subscription Mong problem to solve.
 
-## 3) 비범위
-- 데이터 분석 백엔드 연동
-- 결제/로그인/외부 API 의존 설계
-- 멀티플랫폼 고도 최적화(토스 앱 외 확장)
+## 2) Scope
 
-## 4) 요구사항
-- 기본 범위(제안 우선순위):
-  - 구독 잔여일/금액 알림
-  - 구독 변경/해지 가이드(문구 기반)
-  - 월간/주간 비용 요약 보기
-  - 경고 알림 규칙(중요 일정/요금 변동)
-- 앱은 Flutter Web으로 구현 가능한 화면 설계여야 한다.
-- 백엔드/DB 미사용 시나리오에서는 localStorage 기반 상태 저장을 전제로 한다.
-- 사용자 노출 문구는 한글로 유지하고 브랜드 가이드를 준수해야 한다.
+- Generate at least 3 app concept candidates
+- Score each candidate for value, implementation effort, and risk
+- Select one highest-priority concept
+- Define 3-5 core screens suitable for Toss miniapp
+- Break down MVP functions for Flutter Web + localStorage baseline
+- Draft requirements for the next PRD (detailed features)
+- Add mandatory evaluation for `no auth / no DB / no backend` constraints
 
-## 5) 산출물
-- 앱 아이디어 후보표(3개)
-- 후보 비교 매트릭스(가치, 난이도, 리스크)
-- 최종 후보 선정 근거 문서
-- 토스 미니앱 레이아웃 1차 와이어
-- `다음 PRD`로 전개 가능한 핵심 기능 목록
+## 3) Out of Scope
 
-## 6) 검수 기준
-- 후보 3개 이상 작성 및 비교 점수표 완성
-- 최소 1개 앱을 `우선 개발 후보`로 선정
-- 선정 근거가 `가치 > 실행 난이도 > 리스크` 순으로 기록
-- 가드멍이 중단 리스크(`높음`)로 판단한 기능 0개
-- 체크멍이 우선순위/요구사항 미비 항목 0건 처리
+- Data-analytics backend integration
+- Payment/login/external API dependency design
+- Advanced multi-platform optimization (outside Toss miniapp)
+- Push notification / scheduler integration
+- Cloud sync (account-based restore, multi-device sync)
+- Todo-like concept that ends in task-check only
 
-## 7) 리스크/대응
-- 미니앱에서 표현 가능한 범위를 넘는 기능: MVP 범위 재편
-- 데이터 저장 충돌/복원 실패: localStorage 버전/마이그레이션 규칙 선제 정의
-- UX 복잡도 증가: 핵심 화면 3~5개만 유지
+## 4) Requirements
 
-## 8) 승인 조건
-- 리더멍: 범위/우선순위 최종 승인
-- 픽셀멍: Flutter 실행성 점검 통과
-- 뷰티멍: 핵심 화면 가독성 통과
-- 브랜딩멍: 메시지·톤 반영 확인
-- 가드멍: 중단 리스크 0건
-- 체크멍: 게이트 통과
+- Core scope (priority order):
+  - Subscription remaining days / amount alerts
+  - Text-based change/cancel guidance
+  - Weekly/monthly cost summary
+  - Alert rules for key dates / fee changes
+- UI must be implementable in Flutter Web.
+- For scenarios without backend/DB, localStorage is the default state store.
+- User-facing copy should remain in Korean and follow branding guide.
+- Main screen entry should expose key indicators quickly.
+- Users can register/manage subscriptions per device without login.
 
-## 9) 일정
-- 개발전 팀 회의에서 후보 기준 합의 후 시작
-- 1일 내 후보 생성/비교 완료
-- 1회 내부 리뷰(리스크/품질)로 최종 후보 확정
-- 완료 후 회의에서 backlog 반영 항목 추출
+## 4-1) Ideation Checkpoints
 
-## 10) 실행 연동
-- Backlog 전개:
+- Goal: implementation stays simple without becoming a plain Todo app
+- Minimum flow: `Input (add subscription) -> Compute status -> Home summary -> Action suggestion`
+- Data path: calculations from a JSON array stored in localStorage on one device
+- Forbidden: external login, auth token, auto-refresh/sync, backend computation assumptions
+- Required value (minimum 2): at least 2 of below should be immediately visible
+  - Imminent status (near renewal / budget warning)
+  - Cost summary (monthly/annual projection)
+  - Suggested next action (extend/cancel/adjust guide)
+
+## 5) Deliverables
+
+- 3 candidate ideas
+- Candidate matrix (value / effort / risk)
+- Selection rationale document
+- Toss miniapp first-pass wireframe
+- Core feature list expandable to next PRD
+
+## 6) Acceptance Criteria
+
+- Complete 3+ concepts and scoring table
+- Finalize at least one priority candidate
+- Record selection rationale as `value > effort > risk`
+- Zero stop-risk (`high`) features by Guard review
+- Zero unresolved priority/requirement gaps from QA
+- 100% compliance with no-auth/no-backend feasibility
+- Zero high-risk items from Todo-only regression check
+
+## 7) Risks / Mitigation
+
+- Features beyond miniapp capability: reduce scope back to MVP
+- Todo-only drift risk: remove items without summary/imminent-status/action guidance
+- LocalStorage collision/recovery failures: define version + migration policy in advance
+- UX complexity growth: keep 3-5 core screens only
+
+## 8) Approval Conditions
+
+- 리더멍: final approval on scope and priority
+- 픽셀멍: pass Flutter execution feasibility
+- 뷰티멍: pass core screen readability
+- 브랜딩멍: confirm message/tone application
+- 가드멍: zero stop-risk items
+- 체크멍: pass gate
+
+## 9) Schedule
+
+- Start after criteria aligned in pre-development meeting
+- Generate and score candidates in 1 day
+- One internal review (risk/quality) to finalize candidate
+- Extract backlog carryover items in closing meeting
+
+## 10) Execution Linkage
+
+- Backlog roll-out:
   - `TODO-002-아이데이션-목록`
   - `TODO-002-아이데이션-후보비교`
   - `TODO-002-미니앱-최종선정`
   - `TODO-002-토스미니앱-Wireframe`
-- Runbook 연동: PRD 기준 3단계(개발전 회의-개발 진행-완료 회고)로 기록
+- Runbook linkage: record under PRD 3-step flow (pre-dev meeting -> execution -> retrospective)
 
-## 개발전 회의 연동
+## Pre-Development Meeting Linkage
 
-- 병렬 회의 로그: `.codex/PRD/PRD-001-002-kickoff-meeting-log.md`
-- 상태: 트랙 B 후보군 합의 반영(후보 3개, 우선순위 기준 고정)
+- Parallel meeting log: `.codex/PRD/PRD-001-002-kickoff-meeting-log.md`
+- Status: Track B candidate consensus applied (3 candidates, fixed priority rule)
+
+## Parallel Draft Output
+
+### Candidate Concepts
+
+- C1: Home-first subscription status app
+  - Core value: check remaining days, amounts, and upcoming charges at a glance in one screen
+- C2: Subscription change guide app
+  - Core value: reduce decision burden with step-by-step change/cancel flow
+- C3: Cost-control mission app
+  - Core value: warn users of overspending windows via weekly/monthly summaries
+
+### Candidate Matrix
+
+Score (10 points, higher is better)
+
+| Candidate | Value | Effort (lower is better, higher score) | Risk (lower is better, higher score) | Total |
+| --- | --- | --- | --- | --- |
+| C1 | 9 | 8 | 8 | 25 |
+| C2 | 8 | 6 | 7 | 21 |
+| C3 | 9 | 6 | 6 | 21 |
+
+### Constraint-based Supplementary Scores
+
+| Candidate | Backend-free feasibility (10) | Anti-Todo drift (10) | Local recoverability (10) | Extended total |
+| --- | --- | --- | --- | --- |
+| C1 | 10 | 10 | 9 | 29 |
+| C2 | 9 | 7 | 8 | 24 |
+| C3 | 10 | 8 | 9 | 27 |
+
+Selection rule: prioritize total score, then value.
+
+### Final Priority Candidate
+
+- 1st: `C1 Home-first subscription status app`
+- Selection rationale:
+  - Higher user value (9), lower effort (8), lower risk (8)
+  - Fits Toss miniapp constraints (concise, fast execution)
+
+### Core Screens (Draft)
+
+1. Home (summary): remaining days, monthly total, 2-3 imminent items
+2. Alert center: fee changes, upcoming renewal, adjustable status
+3. Subscription management: detail view + entry to change/cancel guide
+4. Monthly summary: period cost comparison and charts
+5. Settings: guide texts, help, data reset instructions
+
+### MVP Priority List (Draft)
+
+- Must-have: local data ownership check, minimum 3 core screens, alert rules
+- Optional: monthly summary expansion, deeper guidance
+- Excluded: external integration (payment/login/auto-sync), automated analytics report
+
+### Fixed Constraints for PRD-002
+
+- Login/auth: none
+- Permissions/account: none
+- Backend/DB: none
+- Storage: localStorage only
+- App format: not a plain Todo app (must provide state summary + decision guidance)

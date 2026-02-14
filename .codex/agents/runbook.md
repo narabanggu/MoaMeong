@@ -1,47 +1,47 @@
-# 에이전트 실행 런북
+# Agent Execution Runbook
 
-## 목적
+## Purpose
 
-- PRD 기반 피쳐 단위로 빠르고 일관되게 실행한다.
-- 품질·리스크·문서 정합성을 유지한다.
-- 완료 학습을 다음 피쳐에 반영한다.
+- Execute feature-level work from PRDs consistently and quickly.
+- Maintain quality, risk controls, and documentation alignment.
+- Feed completion learnings into the next feature.
 
-## 기본 구성
+## Composition
 
-- 최상위 리더: 사용자
-- 실행 리더: 리더멍
-- 활성 멤버: 브랜딩멍, 리더멍, 뷰티멍, 픽셀멍, 체크멍, 가드멍
+- Top owner: User
+- Execution lead: 리더멍
+- Active members: 브랜딩멍, 리더멍, 뷰티멍, 픽셀멍, 체크멍, 가드멍
 
-## PRD 기준 피쳐 개발 플로우
+## PRD-Driven Feature Flow
 
-### 1) 개발전 팀 회의
-- 트리거: PRD/요구사항 변경 수신 시 즉시 실행
-- 산출물: 범위·완료조건·승인 조건·블로커 예상
-- 액션: 역할별 책임 확정, 의사결정 우선순위 합의, `사용자 승인` 필요 항목 분기
-- PRD-001/PRD-002는 병렬 회의 방식으로 처리한다.
-  1) 공통 킥오프(전체) → 2) 트랙별 병렬 협의(브랜딩/아이데이션) → 3) 통합 정렬
-  - 통합 로그: `.codex/PRD/PRD-001-002-kickoff-meeting-log.md`
+### 1) Pre-Development Team Meeting
+- Trigger: run immediately when PRD/spec changes are received.
+- Output: scope, completion criteria, approval conditions, expected blockers.
+- Actions: confirm role ownership, align decision priority, branch user-approval required items.
+- PRD-001/PRD-002 are handled with a parallel meeting flow.
+  1) Common kickoff (all) → 2) parallel track alignment (branding / ideation) → 3) integration alignment
+  - Integration log: `.codex/PRD/PRD-001-002-kickoff-meeting-log.md`
 
-### 2) 개발 진행
-- 리더멍이 범위, 마일스톤, blocker 상태를 운영
-- 각 멤버는 역할별 기준으로 실행하며 변경사항은 즉시 공유
-- 중단 조건: `기술 경계 이탈`, `검증 실패`, `리스크 급상승`
+### 2) Execution
+- 리더멍 manages scope, milestones, and blocker status.
+- Each member executes with role-specific criteria and shares changes immediately.
+- Stop conditions: `technical boundary breach`, `verification failure`, `risk escalation`.
 
-### 병렬 회의 실행 템플릿
+## Parallel Meeting Template
 
-- 공통 킥오프: 우선순위, 승인 체계, blocker 3개, PRD-001/PRD-002 의존성 정렬
-- 트랙 A(브랜딩): 톤·문구·컴포넌트 기준, 금지어/민감표현, 적용 범위 및 리뷰 라운드
-- 트랙 B(아이데이션): 앱 후보 3개 평가, 핵심 화면 3~5개 선정, MVP 범위 재검토
-- 통합 정렬: 중복/충돌 항목만 분기, 다음 백로그 반영 항목 확정
+- Common kickoff: priority, approval chain, top 3 blockers, PRD-001/PRD-002 dependency alignment.
+- Track A (Branding): tone/copy/component standards, forbidden/sensitive words, review rounds.
+- Track B (Ideation): evaluate 3+ candidates, select 3-5 core screens, re-check MVP scope.
+- Integration: only split duplicate/conflict items, then finalize backlog carryover items.
 
-### 3) 완료 후 회의 및 회고
-- 산출물 정합성 점검 및 증빙 정리
-- 이슈, 실수, 보완점, 재발 방지안 회고
-- 보완할 점은 `.codex/TODO/backlog.md`에 반영
-- 다음 피쳐 착수 전 반영 항목을 승인 루프에 반영
+### 3) Retrospective Meeting
+- Validate artifact consistency and evidence.
+- Reflect issues, mistakes, gaps, and prevention actions.
+- Record follow-up items in `.codex/TODO/backlog.md`.
+- Reflect these items in the approval loop before starting the next feature.
 
-## 진행 게이트
+## Execution Gates
 
-- 최종 확정: 사용자 승인 완료 + blocker 0
-- 문서 정합성: `.codex/PRD/`, `.codex/TODO/backlog.md`, `.codex/changelog/CHANGELOG.md`
-- 기본 운영 규칙: 사용자 문구 한글, 내부 식별자 영문, 기술 경계 `Flutter Web + localStorage + 무백엔드/무DB/외부연동 0`
+- Finalization: user approval and zero blockers.
+- Documentation consistency: `.codex/PRD/`, `.codex/TODO/backlog.md`, `.codex/changelog/CHANGELOG.md`
+- Core operating rule: Korean user copy, English internal identifiers, technical boundary `Flutter Web + localStorage`, zero backend/DB/external integration

@@ -1,72 +1,128 @@
-# PRD-001: 구독멍 브랜딩 및 브랜드 디자인
+# PRD-001: Subscription Mong Branding and Brand Design
 
-## 문서 정보
+## Document Info
 - PRD ID: PRD-001
-- 작성일: 2026-02-14
-- 담당: 브랜딩멍, 리더멍
-- 관련 에이전트: 브랜딩멍
+- Created: 2026-02-14
+- Owners: 브랜딩멍, 리더멍
+- Related Agents: 브랜딩멍
 
-## 1) 목적
-구독멍 서비스의 언어 톤, 메시지, 시각 규칙을 단일 기준으로 고정해 앞으로의 앱 설계와 산출물이 동일한 브랜드 정합성으로 나가도록 한다.
+## 1) Purpose
 
-## 2) 범위
-- 브랜드 핵심 메시지(한 줄 소개, 가치 제안, 사용자 약속) 정리
-- 브랜딩 언어 가이드(허용 톤/금지 표현/민감 표현) 초안 작성
-- 컬러/타이포/컴포넌트 기본 규칙 1차 정의
-- 토스 미니앱 화면에서 재사용 가능한 문구/컴포넌트 규칙 반영
-- 향후 변경 시 승인 플로우(리뷰/보완/최종 승인) 등록
+Set one single standard for language tone, messaging, and visual rules so future app design and outputs continue with consistent brand alignment.
 
-## 3) 비범위
-- 백엔드/DB/API/서버 연동 개발
-- 광고 카피 대행 운영, 캠페인 운영
-- 법률 고지/개인정보 처리방침의 법무 문구 작성(문구 가이드 준수만 수행)
+## 2) Scope
 
-## 4) 요구사항
-- 사용자 노출 문구는 한글로 통일한다.
-- 내부 식별자/파일명은 영문으로 고정한다.
-- 브랜딩 규칙은 최소 3개 카테고리로 관리한다.
-  - 톤(신뢰성/공감/명료성)
-  - 감정 강도(강함/보통/약함)
-  - 조심 표현(과장/공포/불필요 과장)
-- 기존 산출물의 메시지 불일치 항목을 최소 10개 이상 점검한다.
-- 신규 채널(알림, 안내, 토스형 화면 문구)까지 동일 규칙을 적용한다.
+- Define core brand messages (headline, value proposition, user promise)
+- Draft branding language guide (allowed tone, forbidden terms, sensitive expressions)
+- Define first-pass color/typography/component rules
+- Apply reusable copy/component rules to Toss miniapp screens
+- Register change approval flow (review → improvement → final approval)
 
-## 5) 산출물
-- `docs/branding-guide.md` 초안(내부 기준 문서)
-- 문구 금칙어/민감어 목록
-- 1차 컬러/타이포/버튼/카드 규칙
-- PRD-002(미니앱 기획)에서 사용할 브랜딩 적용 가이드
+## 3) Out of Scope
 
-## 6) 검수 기준
-- 톤 일치율 기준: 핵심 샘플 10건 기준 90% 이상 통과
-- 오해성 표현 0건 허용(민감/과장 표현 탐지 시 즉시 보류)
-- 브랜딩 멍 승인 후 가드멍 리스크 검토에서 `높음` 항목 0건
-- 체크리스트 항목 미기재 시 보류
+- Backend/DB/API/server integration work
+- External ad-campaign/marketing copy operations
+- Legal notice/privacy-policy drafting (only ensure compliance to copy guide)
 
-## 7) 리스크/대응
-- 과장/오해 표현: 문구 레벨 재평가 후 완화안 제출
-- 시각 규칙 충돌: 컴포넌트 단위를 분리해 기준 충돌 원인 최소화
-- 일관성 하락: 주간 리뷰에서 정합성 점검 후 로그 보강
+## 4) Requirements
 
-## 8) 승인 조건
-- 브랜딩멍: 초안 확정
-- 체크멍: 게이트 체크리스트 통과
-- 가드멍: 리스크 경고 항목 없음
-- 리더멍: 최종 승인
+- User-facing copy is in Korean.
+- Internal identifiers and filenames use English.
+- Brand rules are managed by at least 3 categories:
+  - Tone (credibility / empathy / clarity)
+  - Emotional intensity (strong / normal / mild)
+  - Guarded wording (overclaim / fear / unnecessary exaggeration)
+- Check at least 10 inconsistency items across existing outputs
+- Apply the same rules to new channels (alerts, guides, Toss-style screens)
 
-## 9) 일정
-- 개발전 팀 회의 후 착수
-- 2일 이내 초안 확정
-- 1회 리뷰 후 수정 반영
-- 완료 후 회의에서 backlog 반영 항목 확정
+## 5) Deliverables
 
-## 10) 실행 연동
-- Backlog 전개:
+- Draft `docs/branding-guide.md` (internal standard document)
+- Forbidden/sensitive term list
+- First-pass color / typography / button / card rules
+- Branding usage guide for PRD-002 miniapp planning
+
+## 6) Acceptance Criteria
+
+- Tone match: pass 90%+ across 10 key samples
+- No misleading copy (hold immediately if sensitive/overclaiming terms are found)
+- After branding approval, zero `high` risk findings from Guard review
+- Hold if checklist fields are missing
+
+## 7) Risks / Mitigations
+
+- Overclaiming / misunderstanding: re-score copy and submit toned-down alternatives
+- Visual rule conflicts: separate component units to minimize source conflicts
+- Consistency drift: strengthen logs after weekly review
+
+## 8) Approval Conditions
+
+- 브랜딩멍: draft confirmation
+- 체크멍: pass gate checklist
+- 가드멍: no high-risk warnings
+- 리더멍: final approval
+
+## 9) Schedule
+
+- Start after pre-development meeting
+- Draft completion within 2 days
+- One review cycle, then reflect revisions
+- Lock backlog items to carry-forward at closing meeting
+
+## 10) Execution Linkage
+
+- Backlog rollout:
   - `TODO-001-브랜딩가이드`
   - `TODO-001-브랜딩리스크리뷰`
-- Runbook 연동: 개발전 팀 회의 1차 산출물, 완료 후 회고에서 보완 항목 등록
+- Runbook linkage: apply first-pass pre-development meeting outcome, register follow-ups in retrospective review
 
-## 개발전 회의 연동
+## Pre-development Meeting Linkage
 
-- 병렬 회의 로그: `.codex/PRD/PRD-001-002-kickoff-meeting-log.md`
-- 상태: 로그 반영 완료(트랙 A 기준 반영)
+- Parallel meeting log: `.codex/PRD/PRD-001-002-kickoff-meeting-log.md`
+- Status: aligned and reflected (Track A applied)
+
+## Parallel Draft Output
+
+### Branding First Draft Message
+
+- Mission statement: `Make subscriptions easier to check and easier to manage.`
+- Core principles
+  - Trust first: express numbers, period, and benefits directly without overstatement
+  - Reduce user load: split long messages into two sentences or fewer
+  - Remove emotional overdrive: avoid anxiety-inducing/fear-based marketing
+- Base tone
+  - Opening: `Let's check your current status.`
+  - Warning: `The due date is coming soon.`
+  - Guidance: `Please verify these items before changing anything.`
+
+### Draft Language Guide
+
+- Tone guardrails
+  - Allowed: `confirm`, `guide`, `recommend`, `reassure`
+  - Restricted: `mandatory`, `must`, `100%`, `guaranteed`
+  - Sensitive: overclaiming, fear, overly definitive negative claims
+- Copy review criteria
+  - Misleading copy: 0 tolerance
+  - Repeated correction (same expression pattern): provide alternatives after 2 occurrences
+  - New channels (alerts/status banners/chats): re-check with same criteria
+
+### Draft Visual / Component Rules
+
+- Color
+  - Background: `#F7F8FA` (light neutral)
+  - Accent: `#3F66FF` (primary action, links)
+  - Warning: `#E5A000` (attention, upcoming items)
+  - Error: `#D93A3A` (attention required)
+- Typography
+  - Base: readability-first
+  - Key metrics (remaining days/amount): heavier weight + 1.5x line height
+- Components
+  - Core buttons: keep minimum touch area, consistent label style
+  - Cards: one state color label per card
+  - Alert badge: no more than 2 emphasis items at once
+
+### Reference Outputs
+
+- Detailed guide: `docs/branding-guide.md`
+- Forbidden/sensitive term list: initial copy-review baseline
+- PRD-002 message application: apply same tone to Home/Alert/Billing screens
