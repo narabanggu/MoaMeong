@@ -1,0 +1,48 @@
+# OS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node/monorepo
+node_modules/
+.pnpm-store/
+.npm/
+
+# Build outputs
+dist/
+dist-types/
+build/
+coverage/
+.turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# Test artifacts
+playwright-report/
+test-results/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Caches
+.cache/
+.eslintcache
+
+# Runtime data / local db
+*.sqlite
+*.sqlite3
+.local/
+**/.local/
+
+# IDE (keep committed shared project files)
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
