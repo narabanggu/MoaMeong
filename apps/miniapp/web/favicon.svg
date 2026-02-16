@@ -1,0 +1,35 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="7" y1="6" x2="57" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFCEB"/>
+      <stop offset="0.6" stop-color="#FFEBAE"/>
+      <stop offset="1" stop-color="#FFD767"/>
+    </linearGradient>
+    <linearGradient id="ear" x1="14" y1="16" x2="24" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B87442"/>
+      <stop offset="1" stop-color="#8D542C"/>
+    </linearGradient>
+    <linearGradient id="face" x1="18" y1="21" x2="46" y2="51" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4D2A6"/>
+      <stop offset="1" stop-color="#D39A62"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#bg)"/>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="17.5" stroke="#F1D37A"/>
+
+  <ellipse cx="18.5" cy="30" rx="8.8" ry="12.8" fill="url(#ear)"/>
+  <ellipse cx="45.5" cy="30" rx="8.8" ry="12.8" fill="url(#ear)" transform="rotate(2 45.5 30)"/>
+  <ellipse cx="32" cy="35" rx="17" ry="16.6" fill="url(#face)"/>
+
+  <ellipse cx="32" cy="41" rx="9.6" ry="7" fill="#FAF3E3"/>
+  <circle cx="26.3" cy="33.8" r="3.2" fill="#181818"/>
+  <circle cx="37.7" cy="33.8" r="3.2" fill="#181818"/>
+  <circle cx="27.1" cy="33" r="0.9" fill="#FFFDF9"/>
+  <circle cx="38.5" cy="33" r="0.9" fill="#FFFDF9"/>
+
+  <circle cx="32" cy="38.9" r="2.4" fill="#111111"/>
+  <path d="M28.2 42.6C29.2 44 30.4 44.7 32 44.7C33.6 44.7 34.8 44 35.8 42.6" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="23.7" cy="40.8" r="1.5" fill="#F3A9A3" opacity="0.45"/>
+  <circle cx="40.3" cy="40.8" r="1.5" fill="#F3A9A3" opacity="0.45"/>
+</svg>
