@@ -57,7 +57,7 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
 - 현재 말티푸 얼굴 파비콘 스타일을 PWA 설치 아이콘까지 일관화한다.
 - `web/icons/Icon-192.png`, `Icon-512.png`, `Icon-maskable-*`를 동일 브랜드 톤으로 교체한다.
 - `manifest.json`과 실제 파일 세트의 사이즈/경로를 일치시킨다.
-- 16/32/64(파비콘) + 192/512(PWA) 가독성을 함께 검증한다.
+- 32(파비콘) + 192/512(PWA) 가독성을 함께 검증한다.
 - maskable 기술 기준:
   - 핵심 얼굴 요소는 아이콘 중앙 `safe zone(지름 80% 원)` 안에 배치
   - 모서리 크롭 시 눈/코/입 주요 파츠가 잘리지 않아야 함
@@ -87,9 +87,8 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
 
 - `PRD-INDEX`, `backlog`, `changelog`, `docs-index`, `README`를 v0.2 기준으로 정렬한다.
 - v0.1은 완료 베이스라인으로 보존하고, 활성 실행 기준은 v0.2로 전환한다.
-- v0.2 QA 실행본 파일명 규칙:
-  - 체크리스트: `qa/mobile-qa-checklist-v0.2-YYYY-MM-DD.md`
-  - 리포트: `qa/mobile-qa-report-v0.2-YYYY-MM-DD.md`
+- 버전 커밋마다 QA 실행본 문서를 저장소에 추가하지 않는다.
+- QA는 템플릿(`qa/mobile-qa-checklist.md`, `qa/mobile-qa-report-template.md`) + 표준 검증 스크립트(`scripts/verify.sh`) 기준으로 운영한다.
 
 ## 5) Deliverables
 
@@ -97,7 +96,7 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
 2. v0.2 backlog 항목(우선순위/완료 기준 포함)
 3. 브랜드 통일 웹 아이콘 세트(파비콘 + PWA)
 4. 검증 실행 표준(`scripts/verify.sh`)
-5. v0.2 QA 결과 문서(체크리스트/리포트, v0.2 파일명 규칙)
+5. QA 템플릿/운영 기준 문서
 6. 동기화된 운영 문서 세트
 
 ## 6) Acceptance Criteria
@@ -147,8 +146,8 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
   - 증적: `apps/miniapp/pubspec.yaml`, `apps/miniapp/assets/fonts`
   - 검증: `bash scripts/verify.sh` 통과
 - `TODO-v0.2-002-PWA-아이콘-통일` 완료 기준:
-  - 증적: `apps/miniapp/web/favicon.svg`, `apps/miniapp/web/favicon.png`, `apps/miniapp/web/icons/*`, `apps/miniapp/web/manifest.json`
-  - 검증: 아이콘 16/32/64/192/512 가독성 확인 및 QA artifact 저장
+  - 증적: `apps/miniapp/web/favicon.png`, `apps/miniapp/web/icons/*`, `apps/miniapp/web/manifest.json`
+  - 검증: 아이콘 32/192/512 가독성 확인 및 QA artifact 저장
 - `TODO-v0.2-003-검증-자동화` 완료 기준:
   - 증적: `scripts/verify.sh`, `README.md` 실행 가이드
   - 검증: 비정상 종료 코드 전파 + 3단계(analyze/test/build) 로그 확인
@@ -156,5 +155,5 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
   - 증적: `apps/miniapp/test/widget_test.dart`(또는 동등 테스트 파일)
   - 검증: 전체 테스트 pass + 신규 2건 식별 가능
 - `TODO-v0.2-005-QA-문서동기화` 완료 기준:
-  - 증적: `qa/mobile-qa-checklist-v0.2-YYYY-MM-DD.md`, `qa/mobile-qa-report-v0.2-YYYY-MM-DD.md`, `docs/docs-index-ko.md`, `.codex/changelog/CHANGELOG.md`
-  - 검증: 최종 판정 Pass + PRD/backlog/changelog 상호 참조 일치
+  - 증적: `qa/mobile-qa-checklist.md`, `qa/mobile-qa-report-template.md`, `docs/docs-index-ko.md`, `.codex/changelog/CHANGELOG.md`
+  - 검증: PRD/backlog/changelog/docs/README 상호 참조 일치 + `bash scripts/verify.sh` 통과

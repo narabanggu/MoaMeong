@@ -53,12 +53,7 @@ void main() {
       }
     }
 
-    const faviconPngSizes = <String, int>{
-      'web/favicon-16.png': 16,
-      'web/favicon-32.png': 32,
-      'web/favicon-64.png': 64,
-      'web/favicon.png': 32,
-    };
+    const faviconPngSizes = <String, int>{'web/favicon.png': 32};
     for (final entry in faviconPngSizes.entries) {
       final file = File(entry.key);
       expect(file.existsSync(), isTrue, reason: 'missing favicon file: ${entry.key}');
@@ -67,8 +62,6 @@ void main() {
       expect(dimensions.width, entry.value);
       expect(dimensions.height, entry.value);
     }
-
-    expect(File('web/favicon.svg').existsSync(), isTrue);
   });
 
   test('폰트 설정은 SUIT 단일 구성이고 폰트 용량은 7MB 이하를 유지한다', () {

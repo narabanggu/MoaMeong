@@ -8,12 +8,10 @@
 2. 백로그: `.codex/TODO/backlog.md`
 3. 변경 이력: `.codex/changelog/CHANGELOG.md`
 4. 표준 검증 스크립트: `scripts/verify.sh`
-5. QA 체크리스트(실행본, v0.2): `qa/mobile-qa-checklist-v0.2-2026-02-18.md`
-6. QA 리포트(실행본, v0.2): `qa/mobile-qa-report-v0.2-2026-02-18.md`
-7. QA 체크리스트 템플릿(공용): `qa/mobile-qa-checklist.md`
-8. QA 결과 템플릿(공용): `qa/mobile-qa-report-template.md`
-9. v0.1 완료 PRD: `.codex/PRD/PRD-v0.1-mvp-baseline.md`
-10. QA 체크리스트(실행본, v0.1): `qa/mobile-qa-checklist-2026-02-16.md`
-11. QA 리포트(실행본, v0.1): `qa/mobile-qa-report-2026-02-16.md`
-12. 다마고찌 톤가이드(v0.1): `qa/tamagotchi-tone-guide-v0.1.md`
-13. 말티푸 v1 확정 기록: `qa/character-maltipoo-v1-signoff-2026-02-16.md`
+5. QA 체크리스트 템플릿(공용): `qa/mobile-qa-checklist.md`
+6. QA 결과 템플릿(공용): `qa/mobile-qa-report-template.md`
+7. v0.1 완료 PRD: `.codex/PRD/PRD-v0.1-mvp-baseline.md`
+8. QA 체크리스트(실행본, v0.1): `qa/mobile-qa-checklist-2026-02-16.md`
+9. QA 리포트(실행본, v0.1): `qa/mobile-qa-report-2026-02-16.md`
+10. 다마고찌 톤가이드(v0.1): `qa/tamagotchi-tone-guide-v0.1.md`
+11. 말티푸 v1 확정 기록: `qa/character-maltipoo-v1-signoff-2026-02-16.md`
