@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:miniapp/core/theme/app_palette.dart';
 import 'package:miniapp/core/widgets/liquid_glass_card.dart';
 
-const String kMascotFaceAsset = 'assets/characters/maltipoo_mascot.svg';
+const String kMascotBodyAsset = 'assets/characters/maltipoo_mascot.svg';
 
 class MascotBrandBar extends StatelessWidget {
   const MascotBrandBar({super.key});
@@ -14,10 +14,11 @@ class MascotBrandBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LiquidGlassCard(
-      tintColor: AppPalette.yellowPale,
+      borderRadius: 22,
+      tintColor: AppPalette.white,
       child: Row(
         children: <Widget>[
-          const MascotFace(size: 70),
+          const MascotCharacter(size: 74),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -27,35 +28,16 @@ class MascotBrandBar extends StatelessWidget {
                   '모아멍',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w900,
-                        letterSpacing: -0.4,
+                        letterSpacing: -0.5,
                       ),
                 ),
-                const SizedBox(height: 3),
+                const SizedBox(height: 4),
                 Text(
                   '귀엽게 모으고, 똑똑하게 줄여요',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppPalette.inkSoft,
                         fontWeight: FontWeight.w600,
                       ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: BoxDecoration(
-                    color: AppPalette.yellowSoft.withValues(alpha: 0.75),
-                    borderRadius: BorderRadius.circular(999),
-                    border: Border.all(
-                      color: AppPalette.line.withValues(alpha: 0.7),
-                    ),
-                  ),
-                  child: Text(
-                    '모아멍 구독 케어',
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: AppPalette.ink,
-                        ),
-                  ),
                 ),
               ],
             ),
@@ -66,31 +48,58 @@ class MascotBrandBar extends StatelessWidget {
   }
 }
 
-class MascotFace extends StatelessWidget {
-  const MascotFace({
+class MascotCharacter extends StatelessWidget {
+  const MascotCharacter({
     super.key,
-    this.size = 56,
+    this.size = 120,
+    this.showFrame = true,
   });
 
   final double size;
+  final bool showFrame;
 
   @override
   Widget build(BuildContext context) {
+    final character = SvgPicture.asset(
+      kMascotBodyAsset,
+      fit: BoxFit.contain,
+    );
+
+    if (!showFrame) {
+      return SizedBox(
+        width: size,
+        height: size,
+        child: character,
+      );
+    }
+
     return Container(
       width: size,
       height: size,
-      padding: const EdgeInsets.all(6),
+      padding: EdgeInsets.all(size * 0.06),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.88),
-        borderRadius: BorderRadius.circular(size * 0.35),
-        border: Border.all(
-          color: AppPalette.line.withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(size * 0.3),
+        gradient: LinearGradient(
+          colors: <Color>[
+            AppPalette.yellowSoft.withValues(alpha: 0.78),
+            AppPalette.white,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
+        border: Border.all(
+          color: AppPalette.line.withValues(alpha: 0.9),
+        ),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: AppPalette.yellow.withValues(alpha: 0.2),
+            blurRadius: size * 0.22,
+            spreadRadius: -size * 0.12,
+            offset: Offset(0, size * 0.09),
+          ),
+        ],
       ),
-      child: SvgPicture.asset(
-        kMascotFaceAsset,
-        fit: BoxFit.contain,
-      ),
+      child: character,
     );
   }
 }
@@ -276,7 +285,10 @@ class _AnimatedMascotFaceState extends State<AnimatedMascotFace>
           height: widget.size,
           child: AnimatedBuilder(
             animation: animation,
-            child: MascotFace(size: widget.size),
+            child: MascotCharacter(
+              size: widget.size,
+              showFrame: false,
+            ),
             builder: (context, child) {
               final idleScale = widget.reducedMotion
                   ? 1.0
@@ -310,7 +322,7 @@ class _AnimatedMascotFaceState extends State<AnimatedMascotFace>
               final blinkOpacity =
                   widget.reducedMotion ? 0.0 : _blinkController.value;
               final blinkHeight =
-                  (widget.size * 0.06 * blinkOpacity).clamp(1.0, 5.0);
+                  (widget.size * 0.055 * blinkOpacity).clamp(1.0, 5.0);
               final stateKey = widget.isReacting
                   ? 'reacting'
                   : widget.isUrgent
@@ -334,20 +346,20 @@ class _AnimatedMascotFaceState extends State<AnimatedMascotFace>
                     ),
                     if (blinkOpacity > 0.03)
                       Positioned(
-                        top: widget.size * 0.41,
-                        left: widget.size * 0.22,
-                        right: widget.size * 0.22,
+                        top: widget.size * 0.34,
+                        left: widget.size * 0.28,
+                        right: widget.size * 0.28,
                         child: Opacity(
                           opacity: blinkOpacity,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               _BlinkLid(
-                                width: widget.size * 0.16,
+                                width: widget.size * 0.14,
                                 height: blinkHeight,
                               ),
                               _BlinkLid(
-                                width: widget.size * 0.16,
+                                width: widget.size * 0.14,
                                 height: blinkHeight,
                               ),
                             ],
@@ -404,18 +416,20 @@ class PlainEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LiquidGlassCard(
-      tintColor: AppPalette.yellowPale,
+      borderRadius: 20,
+      tintColor: AppPalette.white,
+      padding: const EdgeInsets.fromLTRB(18, 18, 18, 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            width: 44,
-            height: 44,
+            width: 48,
+            height: 48,
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.82),
-              borderRadius: BorderRadius.circular(14),
+              color: AppPalette.white,
+              borderRadius: BorderRadius.circular(15),
               border: Border.all(
-                color: AppPalette.line.withValues(alpha: 0.78),
+                color: AppPalette.line,
               ),
             ),
             alignment: Alignment.center,
@@ -424,14 +438,19 @@ class PlainEmptyState extends StatelessWidget {
               color: AppPalette.inkSoft,
             ),
           ),
-          const SizedBox(height: 10),
-          Text(
-            message,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium,
+          const SizedBox(height: 12),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 260),
+            child: Text(
+              message,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    height: 1.4,
+                  ),
+            ),
           ),
           if (action != null && actionLabel != null) ...<Widget>[
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
             FilledButton(
               onPressed: action,
               child: Text(actionLabel!),

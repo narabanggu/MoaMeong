@@ -1,81 +1,44 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   const maxFontBytes = 7 * 1024 * 1024;
-  const pngSignature = <int>[137, 80, 78, 71, 13, 10, 26, 10];
 
-  ({int width, int height}) readPngDimensions(File file) {
-    final bytes = file.readAsBytesSync();
-    expect(bytes.length, greaterThanOrEqualTo(24));
-    expect(bytes.sublist(0, 8), pngSignature);
-
-    final header = ByteData.sublistView(bytes);
-    final width = header.getUint32(16, Endian.big);
-    final height = header.getUint32(20, Endian.big);
-    return (width: width, height: height);
-  }
-
-  test('manifest 아이콘 참조가 유효하고 선언된 사이즈와 일치한다', () {
+  test('manifest/web에서 favicon 및 PWA 아이콘 참조를 사용하지 않는다', () {
     final manifestFile = File('web/manifest.json');
     expect(manifestFile.existsSync(), isTrue);
 
-    final manifest = jsonDecode(manifestFile.readAsStringSync()) as Map<String, dynamic>;
-    final icons = (manifest['icons'] as List<dynamic>)
-        .map((icon) => Map<String, dynamic>.from(icon as Map))
-        .toList();
+    final manifest =
+        jsonDecode(manifestFile.readAsStringSync()) as Map<String, dynamic>;
+    final icons = (manifest['icons'] as List<dynamic>? ?? <dynamic>[]);
+    expect(icons, isEmpty, reason: 'manifest icons should be empty');
 
-    const requiredManifestIcons = <String, String>{
-      'icons/Icon-192.png': '192x192',
-      'icons/Icon-512.png': '512x512',
-      'icons/Icon-maskable-192.png': '192x192',
-      'icons/Icon-maskable-512.png': '512x512',
-    };
-
-    for (final entry in requiredManifestIcons.entries) {
-      final icon = icons.firstWhere((item) => item['src'] == entry.key);
-      expect(icon['sizes'], entry.value);
-
-      final iconPath = 'web/${entry.key}';
-      final iconFile = File(iconPath);
-      expect(iconFile.existsSync(), isTrue, reason: 'missing icon file: $iconPath');
-
-      final dimensions = readPngDimensions(iconFile);
-      final parts = entry.value.split('x');
-      expect(dimensions.width, int.parse(parts[0]));
-      expect(dimensions.height, int.parse(parts[1]));
-
-      if (entry.key.contains('maskable')) {
-        expect(icon['purpose'], 'maskable');
-      }
-    }
-
-    const faviconPngSizes = <String, int>{'web/favicon.png': 32};
-    for (final entry in faviconPngSizes.entries) {
-      final file = File(entry.key);
-      expect(file.existsSync(), isTrue, reason: 'missing favicon file: ${entry.key}');
-
-      final dimensions = readPngDimensions(file);
-      expect(dimensions.width, entry.value);
-      expect(dimensions.height, entry.value);
-    }
-
-    const forbiddenFaviconFiles = <String>[
+    const forbiddenIconFiles = <String>[
+      'web/favicon.png',
       'web/favicon.svg',
       'web/favicon-16.png',
       'web/favicon-32.png',
       'web/favicon-64.png',
+      'web/icons/Icon-192.png',
+      'web/icons/Icon-512.png',
+      'web/icons/Icon-maskable-192.png',
+      'web/icons/Icon-maskable-512.png',
     ];
-    for (final path in forbiddenFaviconFiles) {
+    for (final path in forbiddenIconFiles) {
       expect(
         File(path).existsSync(),
         isFalse,
-        reason: 'forbidden favicon file should not exist: $path',
+        reason: 'forbidden icon file should not exist: $path',
       );
     }
+
+    final indexFile = File('web/index.html');
+    expect(indexFile.existsSync(), isTrue);
+    final index = indexFile.readAsStringSync();
+    expect(index.contains('rel="icon"'), isFalse);
+    expect(index.contains('apple-touch-icon'), isFalse);
   });
 
   test('폰트 설정은 SUIT 단일 구성이고 폰트 용량은 7MB 이하를 유지한다', () {
@@ -95,12 +58,17 @@ void main() {
     final fontFiles = fontDir
         .listSync(recursive: true)
         .whereType<File>()
-        .where((file) => RegExp(r'\.(ttf|otf)$', caseSensitive: false).hasMatch(file.path))
+        .where((file) =>
+            RegExp(r'\.(ttf|otf)$', caseSensitive: false).hasMatch(file.path))
         .toList();
 
-    expect(fontFiles.length, 1, reason: 'unexpected font files: ${fontFiles.map((file) => file.path).join(', ')}');
+    expect(fontFiles.length, 1,
+        reason:
+            'unexpected font files: ${fontFiles.map((file) => file.path).join(', ')}');
     expect(
-      fontFiles.single.path.replaceAll('\\', '/').endsWith('assets/fonts/SUIT/SUIT-Variable.ttf'),
+      fontFiles.single.path
+          .replaceAll('\\', '/')
+          .endsWith('assets/fonts/SUIT/SUIT-Variable.ttf'),
       isTrue,
     );
 
@@ -122,7 +90,7 @@ void main() {
       'static const Color white = Color(0xFFFFFFFF);',
       'static const Color paper = white;',
       'static const Color background = Color(0xFFF3F4F6);',
-      'static const Color yellow = Color(0xFFF7D248);',
+      'static const Color yellow = Color(0xFFFBD1A2);',
       'static const Color yellowSoft = Color(0xFFFFEFB1);',
       'static const Color orange = Color(0xFFF39A1F);',
       'static const Color orangeDeep = Color(0xFFE27C00);',
@@ -135,5 +103,47 @@ void main() {
         reason: 'missing required palette token: $token',
       );
     }
+  });
+
+  test('캐릭터 자산은 전신 단일 경로를 사용하고 얼굴 자산은 제거된다', () {
+    final pubspecFile = File('pubspec.yaml');
+    expect(pubspecFile.existsSync(), isTrue);
+    final pubspec = pubspecFile.readAsStringSync();
+    expect(pubspec.contains('assets/characters/maltipoo_mascot.svg'), isTrue);
+    expect(pubspec.contains('assets/characters/maltipoo_face.svg'), isFalse);
+
+    final mascotAsset = File('assets/characters/maltipoo_mascot.svg');
+    final faceAsset = File('assets/characters/maltipoo_face.svg');
+    expect(mascotAsset.existsSync(), isTrue);
+    expect(faceAsset.existsSync(), isFalse);
+
+    final brandingFile = File('lib/core/widgets/mascot_branding.dart');
+    expect(brandingFile.existsSync(), isTrue);
+    final branding = brandingFile.readAsStringSync();
+    expect(
+      branding.contains(
+          "const String kMascotBodyAsset = 'assets/characters/maltipoo_mascot.svg';"),
+      isTrue,
+    );
+    expect(branding.contains('SvgPicture.asset(\n      kMascotBodyAsset,'),
+        isTrue);
+    expect(branding.contains('class MascotFace'), isFalse);
+    expect(branding.contains('kMascotFaceAsset'), isFalse);
+
+    final appFile = File('lib/app.dart');
+    expect(appFile.existsSync(), isTrue);
+    final appCode = appFile.readAsStringSync();
+    expect(appCode.contains('MascotFace('), isFalse);
+  });
+
+  test('v0.3 화이트 컴포넌트 + 라이트그레이 배경 정책이 테마에 반영된다', () {
+    final themeFile = File('lib/core/theme/app_theme.dart');
+    expect(themeFile.existsSync(), isTrue);
+    final theme = themeFile.readAsStringSync();
+
+    expect(theme.contains('scaffoldBackgroundColor: _background,'), isTrue);
+    expect(theme.contains('color: AppPalette.white,'), isTrue);
+    expect(theme.contains('fillColor: AppPalette.white,'), isTrue);
+    expect(theme.contains('backgroundColor: AppPalette.white,'), isTrue);
   });
 }

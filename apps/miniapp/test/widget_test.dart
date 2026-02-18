@@ -68,7 +68,7 @@ void main() {
     expect(find.text('월환산 총액'), findsOneWidget);
     expect(find.byIcon(Icons.notifications_none_rounded), findsOneWidget);
     expect(find.byIcon(Icons.add_circle_outline_rounded), findsOneWidget);
-    expect(find.byType(MascotFace), findsOneWidget);
+    expect(find.byType(MascotCharacter), findsOneWidget);
     expect(find.byType(PlainEmptyState), findsOneWidget);
     expect(find.text('홈'), findsNothing);
     expect(find.text('요약'), findsNothing);
@@ -87,17 +87,17 @@ void main() {
 
     await pumpApp(tester, subscriptions: subscriptions);
 
-    final initialMascot = tester.widget<MascotFace>(
-      find.byType(MascotFace),
+    final initialMascot = tester.widget<MascotCharacter>(
+      find.byType(MascotCharacter),
     );
     expect(initialMascot.size, closeTo(122, 0.01));
 
     await tester.drag(find.byType(ListView), const Offset(0, -30));
     await tester.pump(const Duration(milliseconds: 120));
 
-    expect(find.byType(MascotFace), findsOneWidget);
-    final collapsedMascot = tester.widget<MascotFace>(
-      find.byType(MascotFace),
+    expect(find.byType(MascotCharacter), findsOneWidget);
+    final collapsedMascot = tester.widget<MascotCharacter>(
+      find.byType(MascotCharacter),
     );
     expect(collapsedMascot.size, lessThan(initialMascot.size));
     expect(collapsedMascot.size, greaterThan(82));
@@ -283,7 +283,7 @@ void main() {
     );
 
     await pumpApp(tester, subscriptions: subscriptions);
-    expect(find.byType(MascotFace), findsOneWidget);
+    expect(find.byType(MascotCharacter), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.notifications_none_rounded));
     await tester.pump(const Duration(milliseconds: 350));
@@ -293,11 +293,11 @@ void main() {
     expect(
       find.descendant(
         of: drawerFinder,
-        matching: find.byType(MascotFace),
+        matching: find.byType(MascotCharacter),
       ),
       findsNothing,
     );
-    expect(find.byType(MascotFace), findsOneWidget);
+    expect(find.byType(MascotCharacter), findsOneWidget);
   });
 
   testWidgets('모션 축소 모드에서는 캐릭터 루프 모션을 완화하고 반응만 유지한다',
@@ -375,7 +375,7 @@ void main() {
 
     await tester.pump(const Duration(milliseconds: 420));
     expect(find.byType(ListView), findsOneWidget);
-    expect(find.byType(MascotFace), findsOneWidget);
+    expect(find.byType(MascotCharacter), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -411,7 +411,7 @@ void main() {
       );
 
       expect(find.byType(ListView), findsOneWidget);
-      expect(find.byType(MascotFace), findsOneWidget);
+      expect(find.byType(MascotCharacter), findsOneWidget);
       expect(find.textContaining('7일 내 결제'), findsOneWidget);
       expect(tester.takeException(), isNull);
     }

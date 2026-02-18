@@ -128,8 +128,18 @@ class _HomePageState extends State<HomePage> {
       child: SafeArea(
         child: ListView(
           controller: _scrollController,
-          padding: const EdgeInsets.fromLTRB(16, 10, 16, 30),
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 30),
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                '오늘의 구독 케어',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: AppPalette.inkMuted,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+            ),
             AnimatedBuilder(
               animation: _scrollController,
               builder: (context, child) => _HeroBriefingCard(
@@ -144,7 +154,7 @@ class _HomePageState extends State<HomePage> {
             if (widget.recoveredFromCorruption) ...<Widget>[
               const SizedBox(height: 12),
               LiquidGlassCard(
-                tintColor: AppPalette.yellowPale,
+                tintColor: AppPalette.white,
                 child: Row(
                   children: <Widget>[
                     const Icon(
@@ -154,8 +164,10 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        '저장 데이터 복구 과정에서 오류가 있어 기본 상태로 시작했어요. 핵심 구독 항목부터 다시 입력해보세요.',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        '저장 복구 중 오류가 있어 기본 상태로 시작했어요.\n핵심 구독부터 다시 입력해 주세요.',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              height: 1.36,
+                            ),
                       ),
                     ),
                   ],
@@ -167,7 +179,7 @@ class _HomePageState extends State<HomePage> {
               monthlyTotal: widget.snapshot.monthlyNormalizedTotal,
               subscriptionCount: trackableSubscriptions.length,
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 20),
             Row(
               children: <Widget>[
                 Text(
@@ -188,7 +200,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 8),
             if (trackableSubscriptions.isEmpty)
               PlainEmptyState(
-                message: '아직 구독 데이터가 없어요. 우측 상단 버튼으로 첫 구독을 추가해보세요.',
+                message: '아직 구독 데이터가 없어요.\n우측 상단 버튼으로 첫 구독을 추가해보세요.',
                 action: widget.onAddSubscription,
                 actionLabel: '구독 추가',
                 icon: Icons.playlist_add_check_circle_outlined,
@@ -216,14 +228,14 @@ class _HomePageState extends State<HomePage> {
   }) {
     if (imminentCount > 0) {
       return _Briefing(
-        headline: '7일 내 결제 $imminentCount건이 예정되어 있어요',
-        detail: '이번 주 결제 예상 ${_formatMoney(imminentAmount)}를 먼저 확인해요.',
+        headline: '7일 내 결제 $imminentCount건 예정',
+        detail: '이번 주 예상 결제 ${_formatMoney(imminentAmount)}를 확인해보세요.',
         isUrgent: true,
       );
     }
 
     return _Briefing(
-      headline: '현재 구독 $subscriptionCount개를 관리 중이에요',
+      headline: '현재 구독 $subscriptionCount개를 관리 중',
       detail: '월환산 총액은 ${_formatMoney(monthlyTotal)}입니다.',
       isUrgent: false,
     );
@@ -277,17 +289,35 @@ class _HeroBriefingCard extends StatelessWidget {
     final reducedMotion = prefersReducedMotion || progress > 0.78;
 
     return LiquidGlassCard(
+      borderRadius: 24,
       padding: cardPadding,
-      tintColor: briefing.isUrgent ? AppPalette.yellow : AppPalette.yellowPale,
+      tintColor: AppPalette.white,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          AnimatedMascotFace(
-            size: mascotSize,
-            isUrgent: briefing.isUrgent,
-            isReacting: isMascotReacting,
-            reducedMotion: reducedMotion,
-            onTap: onMascotTap,
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(26),
+              gradient: LinearGradient(
+                colors: <Color>[
+                  AppPalette.yellowSoft.withValues(alpha: 0.88),
+                  AppPalette.white,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              border: Border.all(
+                color: AppPalette.line.withValues(alpha: 0.95),
+              ),
+            ),
+            child: AnimatedMascotFace(
+              size: mascotSize,
+              isUrgent: briefing.isUrgent,
+              isReacting: isMascotReacting,
+              reducedMotion: reducedMotion,
+              onTap: onMascotTap,
+            ),
           ),
           SizedBox(width: lerpDouble(12, 8, progress)!),
           Expanded(
@@ -325,8 +355,9 @@ class _HeroBriefingCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w800,
-                    color: accentColor,
+                    color: AppPalette.ink,
                     fontSize: titleFontSize,
+                    height: 1.28,
                   ),
                 ),
                 SizedBox(height: lerpDouble(4, 3, progress)!),
@@ -337,18 +368,30 @@ class _HeroBriefingCard extends StatelessWidget {
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: AppPalette.inkSoft,
                     fontSize: bodyFontSize,
+                    height: 1.34,
                   ),
                 ),
                 if (upcomingSubscription != null) ...<Widget>[
                   SizedBox(height: lerpDouble(8, 6, progress)!),
-                  Text(
-                    '다음 결제는 ${upcomingSubscription!.name}, ${_dateText(upcomingSubscription!.nextBillingDate)} 예정',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: AppPalette.inkSoft,
-                      fontWeight: FontWeight.w600,
-                      fontSize: helperFontSize,
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 5,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppPalette.white.withValues(alpha: 0.88),
+                      borderRadius: BorderRadius.circular(999),
+                      border: Border.all(color: AppPalette.line),
+                    ),
+                    child: Text(
+                      '다음 결제: ${upcomingSubscription!.name} · ${_dateText(upcomingSubscription!.nextBillingDate)}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: AppPalette.inkSoft,
+                        fontWeight: FontWeight.w700,
+                        fontSize: helperFontSize,
+                      ),
                     ),
                   ),
                 ],
@@ -377,7 +420,9 @@ class _MonthlyTotalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LiquidGlassCard(
-      tintColor: AppPalette.yellowSoft,
+      borderRadius: 22,
+      tintColor: AppPalette.white,
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -396,6 +441,7 @@ class _MonthlyTotalCard extends StatelessWidget {
                   '${monthlyTotal.round()}원',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w900,
+                        letterSpacing: -0.3,
                       ),
                 ),
               ],
@@ -404,11 +450,9 @@ class _MonthlyTotalCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.72),
+              color: AppPalette.white,
               borderRadius: BorderRadius.circular(999),
-              border: Border.all(
-                color: AppPalette.line.withValues(alpha: 0.7),
-              ),
+              border: Border.all(color: AppPalette.line),
             ),
             child: Text(
               '구독 $subscriptionCount개',
@@ -439,54 +483,86 @@ class _SubscriptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LiquidGlassCard(
-      margin: const EdgeInsets.only(bottom: 8),
-      child: ListTile(
-        onTap: () => onEditSubscription(item),
-        title: Text(
-          item.name,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w800,
-              ),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 2),
-          child: Text(
-            '${_cycleText(item)} · 다음 결제 ${_dateText(item.nextBillingDate)}',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppPalette.inkSoft,
-                ),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              color: AppPalette.white,
+              border: Border.all(color: AppPalette.line),
+            ),
+            alignment: Alignment.center,
+            child: const Icon(
+              Icons.subscriptions_outlined,
+              size: 21,
+              color: AppPalette.ink,
+            ),
           ),
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              '${monthlyCost.round()}원',
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
+          const SizedBox(width: 10),
+          Expanded(
+            child: InkWell(
+              onTap: () => onEditSubscription(item),
+              borderRadius: BorderRadius.circular(12),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      item.name,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w800,
+                          ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      '${_cycleText(item)} · 다음 결제 ${_dateText(item.nextBillingDate)}',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: AppPalette.inkSoft,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Text(
+                '${monthlyCost.round()}원',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+              ),
+              PopupMenuButton<String>(
+                icon: const Icon(Icons.more_horiz_rounded),
+                onSelected: (value) {
+                  if (value == 'edit') {
+                    onEditSubscription(item);
+                  } else if (value == 'delete') {
+                    onDeleteSubscription(item.id);
+                  }
+                },
+                itemBuilder: (_) => const <PopupMenuEntry<String>>[
+                  PopupMenuItem<String>(
+                    value: 'edit',
+                    child: Text('수정'),
                   ),
-            ),
-            PopupMenuButton<String>(
-              onSelected: (value) {
-                if (value == 'edit') {
-                  onEditSubscription(item);
-                } else if (value == 'delete') {
-                  onDeleteSubscription(item.id);
-                }
-              },
-              itemBuilder: (_) => const <PopupMenuEntry<String>>[
-                PopupMenuItem<String>(
-                  value: 'edit',
-                  child: Text('수정'),
-                ),
-                PopupMenuItem<String>(
-                  value: 'delete',
-                  child: Text('삭제'),
-                ),
-              ],
-            ),
-          ],
-        ),
+                  PopupMenuItem<String>(
+                    value: 'delete',
+                    child: Text('삭제'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

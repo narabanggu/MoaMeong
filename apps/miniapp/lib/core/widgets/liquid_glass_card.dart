@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:miniapp/core/theme/app_palette.dart';
 
@@ -15,14 +13,44 @@ class WarmGradientBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppPalette.white,
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxContentWidth),
-          child: child,
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        color: AppPalette.background,
+        gradient: LinearGradient(
+          colors: <Color>[
+            Color(0xFFF4F5F7),
+            Color(0xFFF1F3F6),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: -120,
+            left: -50,
+            child: _GlowOrb(
+              size: 220,
+              color: Colors.white.withValues(alpha: 0.5),
+            ),
+          ),
+          Positioned(
+            top: 120,
+            right: -70,
+            child: _GlowOrb(
+              size: 170,
+              color: Colors.white.withValues(alpha: 0.45),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: maxContentWidth),
+              child: child,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -35,7 +63,7 @@ class LiquidGlassCard extends StatelessWidget {
     this.padding = const EdgeInsets.all(14),
     this.margin = EdgeInsets.zero,
     this.borderRadius = 18,
-    this.tintColor = AppPalette.yellowSoft,
+    this.tintColor = AppPalette.white,
   });
 
   final Widget child;
@@ -46,45 +74,77 @@ class LiquidGlassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasTint = tintColor != AppPalette.white;
+
     return Container(
       margin: margin,
+      decoration: BoxDecoration(
+        color: AppPalette.white,
+        borderRadius: BorderRadius.circular(borderRadius),
+        border: Border.all(
+          color: AppPalette.line,
+        ),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: AppPalette.shadow.withValues(alpha: 0.09),
+            blurRadius: 26,
+            spreadRadius: -16,
+            offset: const Offset(0, 14),
+          ),
+          BoxShadow(
+            color: Colors.white.withValues(alpha: 0.9),
+            blurRadius: 2,
+            spreadRadius: 0,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[
-                  Colors.white.withValues(alpha: 0.9),
-                  tintColor.withValues(alpha: 0.18),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(borderRadius),
-              border: Border.all(
-                color: AppPalette.line.withValues(alpha: 0.48),
-              ),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: AppPalette.yellow.withValues(alpha: 0.12),
-                  blurRadius: 12,
-                  spreadRadius: -6,
-                  offset: const Offset(0, 6),
-                ),
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.03),
-                  blurRadius: 10,
-                  spreadRadius: -8,
-                  offset: const Offset(0, 4),
-                ),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: <Color>[
+                AppPalette.white,
+                hasTint ? tintColor.withValues(alpha: 0.24) : AppPalette.white,
               ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
-            child: Padding(
-              padding: padding,
-              child: child,
-            ),
+          ),
+          child: Padding(
+            padding: padding,
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GlowOrb extends StatelessWidget {
+  const _GlowOrb({
+    required this.size,
+    required this.color,
+  });
+
+  final double size;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: RadialGradient(
+            colors: <Color>[
+              color,
+              color.withValues(alpha: 0),
+            ],
+            stops: const <double>[0, 1],
           ),
         ),
       ),

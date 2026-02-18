@@ -31,11 +31,12 @@ class AlertsDrawer extends StatelessWidget {
         child: WarmGradientBackground(
           maxContentWidth: drawerWidth,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+            padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
             child: Column(
               children: <Widget>[
                 LiquidGlassCard(
-                  tintColor: AppPalette.yellowPale,
+                  borderRadius: 20,
+                  tintColor: AppPalette.white,
                   padding: const EdgeInsets.fromLTRB(12, 10, 8, 10),
                   child: Row(
                     children: <Widget>[
@@ -60,7 +61,7 @@ class AlertsDrawer extends StatelessWidget {
                   child: alerts.isEmpty
                       ? Center(
                           child: PlainEmptyState(
-                            message: '임박 알림이 없어요. 새 구독을 추가해 흐름을 점검해보세요.',
+                            message: '임박 알림이 없어요.\n새 구독을 추가해 흐름을 점검해보세요.',
                             action: () {
                               Navigator.of(context).maybePop();
                               onAddSubscription();
@@ -73,7 +74,8 @@ class AlertsDrawer extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           children: <Widget>[
                             LiquidGlassCard(
-                              tintColor: AppPalette.yellowSoft,
+                              borderRadius: 20,
+                              tintColor: AppPalette.white,
                               child: Wrap(
                                 spacing: 8,
                                 runSpacing: 8,
@@ -120,11 +122,12 @@ class _AlertDetailTile extends StatelessWidget {
     final tone = _severityColor(alert.severity);
 
     return LiquidGlassCard(
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 10),
+      borderRadius: 18,
       tintColor: tone.withValues(alpha: 0.2),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: tone.withValues(alpha: 0.14),
+          backgroundColor: tone.withValues(alpha: 0.16),
           child: Icon(
             Icons.notifications_active_outlined,
             color: tone,
@@ -137,12 +140,27 @@ class _AlertDetailTile extends StatelessWidget {
               ),
         ),
         subtitle: Padding(
-          padding: const EdgeInsets.only(top: 4),
-          child: Text(
-            '${alert.reason}\nD-${alert.daysUntilDue} · ${alert.amount.round()}원',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppPalette.inkSoft,
-                ),
+          padding: const EdgeInsets.only(top: 3),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                alert.reason,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppPalette.inkSoft,
+                    ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                'D-${alert.daysUntilDue} · ${alert.amount.round()}원',
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: AppPalette.inkMuted,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+            ],
           ),
         ),
         isThreeLine: true,
@@ -176,10 +194,10 @@ class _CounterBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: AppPalette.white,
         borderRadius: BorderRadius.circular(999),
         border: Border.all(
-          color: color.withValues(alpha: 0.22),
+          color: color.withValues(alpha: 0.45),
         ),
       ),
       child: Text(

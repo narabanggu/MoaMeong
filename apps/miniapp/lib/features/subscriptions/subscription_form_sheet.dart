@@ -56,27 +56,35 @@ class _SubscriptionFormSheetState extends State<SubscriptionFormSheet> {
       child: Padding(
         padding: EdgeInsets.fromLTRB(12, 0, 12, 12 + bottomPadding),
         child: ClipRRect(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: <Color>[
-                    Colors.white.withValues(alpha: 0.92),
-                    AppPalette.yellowPale.withValues(alpha: 0.84),
+                    AppPalette.white.withValues(alpha: 0.98),
+                    AppPalette.white.withValues(alpha: 0.96),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
                 border: Border.all(
-                  color: AppPalette.line.withValues(alpha: 0.7),
+                  color: AppPalette.line,
                 ),
                 borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(28)),
+                    const BorderRadius.vertical(top: Radius.circular(30)),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: AppPalette.shadow.withValues(alpha: 0.2),
+                    blurRadius: 26,
+                    spreadRadius: -16,
+                    offset: const Offset(0, 16),
+                  ),
+                ],
               ),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
                 child: Form(
                   key: _formKey,
                   child: SingleChildScrollView(
@@ -89,7 +97,7 @@ class _SubscriptionFormSheetState extends State<SubscriptionFormSheet> {
                             width: 42,
                             height: 4,
                             decoration: BoxDecoration(
-                              color: AppPalette.line,
+                              color: AppPalette.lineStrong,
                               borderRadius: BorderRadius.circular(999),
                             ),
                           ),
@@ -103,7 +111,16 @@ class _SubscriptionFormSheetState extends State<SubscriptionFormSheet> {
                                   ),
                         ),
                         const SizedBox(height: 4),
-                        const Text('필수 입력: 서비스명, 요금, 결제 주기, 다음 결제일'),
+                        Text(
+                          '필수: 서비스명 · 요금 · 결제 주기 · 다음 결제일',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: AppPalette.inkMuted,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                         const SizedBox(height: 12),
                         TextFormField(
                           controller: _nameController,
@@ -179,7 +196,10 @@ class _SubscriptionFormSheetState extends State<SubscriptionFormSheet> {
                         OutlinedButton.icon(
                           onPressed: _pickDate,
                           icon: const Icon(Icons.calendar_month_outlined),
-                          label: Text('다음 결제일: ${_dateText(_nextBillingDate)}'),
+                          label: Text(
+                            '다음 결제일 ${_dateText(_nextBillingDate)}',
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         const SizedBox(height: 14),
                         SizedBox(

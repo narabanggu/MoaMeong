@@ -188,8 +188,9 @@
 ## 11) Completion Sync (2026-02-16)
 
 - 완료 기준: `Execution Linkage`의 TODO-004 항목 전부 완료, backlog active pending 없음
+- 참고(2026-02-18): 버전 고정 QA 산출물(`qa/*-2026-02-16.md`)과 QA 파비콘 아티팩트(`qa/artifacts/*`)는 운영 정책 정리로 제거되고, 공용 QA 템플릿만 유지한다.
 - `TODO-004-캐릭터-말티푸-v1`: 완료
-  - 증적: `qa/character-maltipoo-v1-signoff-2026-02-16.md`, `apps/miniapp/assets/characters/maltipoo_mascot.svg`
+  - 증적: `apps/miniapp/assets/characters/maltipoo_mascot.svg`, `.codex/changelog/CHANGELOG.md`
 - `TODO-004-캐릭터-클릭애니메이션`: 완료
   - 증적: `apps/miniapp/lib/features/home/home_page.dart`, `apps/miniapp/test/widget_test.dart`
 - `TODO-004-캐릭터-2D애니메이션`: 완료
@@ -197,11 +198,11 @@
 - `TODO-004-홈히어로-확대`: 완료
   - 증적: `apps/miniapp/lib/features/home/home_page.dart`, `apps/miniapp/test/widget_test.dart`
 - `TODO-004-다마고찌-톤가이드`: 완료
-  - 증적: `qa/tamagotchi-tone-guide-v0.1.md`
+  - 증적: `README.md`, `.codex/changelog/CHANGELOG.md`
 - `TODO-004-모바일-QA`: 완료
-  - 증적: `qa/mobile-qa-checklist-2026-02-16.md`, `qa/mobile-qa-report-2026-02-16.md`
+  - 증적: `qa/mobile-qa-checklist.md`, `qa/mobile-qa-report-template.md`, `.codex/changelog/CHANGELOG.md`
 - `TODO-004-파비콘-말티푸얼굴`: 완료
-  - 증적: `apps/miniapp/web/favicon.svg`, `apps/miniapp/web/favicon.png`, `qa/artifacts/favicon-16.png`, `qa/artifacts/favicon-32.png`, `qa/artifacts/favicon-64.png`
+  - 증적: `.codex/changelog/CHANGELOG.md`, `apps/miniapp/test/release_hygiene_test.dart`
 
 ## 12) v0.1 Hardening (2026-02-16)
 

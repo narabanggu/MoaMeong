@@ -5,7 +5,7 @@
 ## v0.3 Focus (In Progress)
 
 - 말티푸 캐릭터 디자인 개선(레퍼런스 톤 기반)
-- 얼굴 중심 favicon + PWA 아이콘 일관화
+- 인앱 배포 기준으로 웹 favicon/PWA 아이콘 제거
 - 전 화면 UI 컴포넌트 beautify
 - 컬러 정책 정리: 화이트 컴포넌트 + 라이트 그레이 배경 + 캐릭터 옐로우 포인트
 
@@ -30,7 +30,7 @@
 - Palette: white components + light gray background + yellow mascot accents (orange only for warning accents)
 - Material: liquid-glass UI components
 - Mascot: maltipoo-style 2D character
-- Favicon: maltipoo face-only icon (`apps/miniapp/web/favicon.png`, 32x32)
+- Web favicon/PWA icons: not used (in-app icon policy)
 - App font: SUIT
 
 ## Verification

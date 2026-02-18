@@ -6,21 +6,21 @@
 - Created: 2026-02-18
 - Updated: 2026-02-18
 - Owners: 리더멍, 뷰티멍, 픽셀멍, 체크멍, 가드멍
-- Source: 사용자 요청(v0.3 기획: 말티푸 캐릭터 리디자인 + 파비콘 개선 + 전체 UI/컬러 정돈)
+- Source: 사용자 요청(v0.3 기획: 말티푸 캐릭터 리디자인 + 인앱 배포 기준 웹 아이콘 정리 + 전체 UI/컬러 정돈)
 
 ## 1) Purpose
 
 v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 시각 완성도를 강화한다.
 
 - 첨부 레퍼런스 톤을 기준으로 말티푸 캐릭터 비주얼을 개선한다.
-- 얼굴 크롭 아이콘을 기준으로 favicon/PWA 아이콘 일관성을 높인다.
+- 인앱 배포 기준에 맞춰 웹 favicon/PWA 아이콘 아티팩트를 제거한다.
 - 전 화면 컴포넌트 시각 위계를 정리해 읽기 쉬운 UI로 개선한다.
 - 컬러 정책을 `화이트 컴포넌트 + 라이트 그레이 배경 + 캐릭터 옐로우 포인트`로 고정한다.
 
 ## 2) Scope
 
-- 말티푸 캐릭터 자산 리디자인(전신/얼굴)
-- 웹 favicon + PWA 아이콘 세트 개선(얼굴 중심)
+- 말티푸 캐릭터 자산 리디자인(전신)
+- 인앱 배포 기준 웹 아이콘 제거(`favicon`/`web/icons`/아이콘 링크)
 - 앱 전 화면 UI 컴포넌트 beautify
 - 컬러 토큰/테마 정비(중간 대비)
 - 모션 품질 보정(절제된 모션 + reduce motion 유지)
@@ -40,18 +40,15 @@ v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 �
 - 캐릭터는 기존 말티푸 정체성을 유지하되, 레퍼런스처럼 큰 눈/풍성한 털/둥근 실루엣을 강화한다.
 - 자산 구성:
   - 전신 SVG: `apps/miniapp/assets/characters/maltipoo_mascot.svg` (앱 Hero/브랜딩 영역)
-  - 얼굴 SVG: `apps/miniapp/assets/characters/maltipoo_face.svg` (아이콘 파생 기준 소스)
 - 캐릭터 강조는 Hero/브랜드 영역 중심으로 제한하고 정보 영역 가독성을 우선한다.
 
-### 4-2) Favicon & PWA Icon Consistency
+### 4-2) Web Icon Removal Policy (In-App)
 
-- 얼굴 중심 아이콘으로 favicon(32) + PWA(192/512 + maskable)를 통일한다.
-- 런타임 favicon은 `apps/miniapp/web/favicon.png`(32x32) 단일 파일만 유지한다.
-- `favicon-16.png`, `favicon-64.png`, `favicon.svg`, 기본 Flutter/Dart 파비콘 재도입을 금지한다.
-- `manifest.json`의 아이콘 경로/사이즈/목적(`maskable`)이 실제 파일과 일치해야 한다.
-- maskable safe zone 기준:
-  - 눈/코/입 핵심 요소는 중앙 80% 안전영역에 배치
-  - 모서리 크롭 시 핵심 파츠 손실이 없어야 함
+- 웹 favicon/PWA 아이콘을 사용하지 않는다.
+- `apps/miniapp/web/index.html`에는 `rel="icon"` 및 `apple-touch-icon` 링크를 두지 않는다.
+- `apps/miniapp/web/manifest.json`의 `icons`는 빈 배열(`[]`)을 유지한다.
+- `apps/miniapp/web/favicon.png`, `apps/miniapp/web/icons/*` 파일 잔존을 금지한다.
+- 기본 Flutter/Dart 파비콘 재도입을 금지한다.
 
 ### 4-3) UI Beautify (All Screens)
 
@@ -73,7 +70,7 @@ v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 �
 - v0.3 토큰 기준값(고정):
   - 배경(base): `#F3F4F6`
   - 표면(surface): `#FFFFFF`
-  - 캐릭터 옐로우(primary): `#F7D248`
+  - 캐릭터 옐로우(primary): `#FBD1A2`
   - 캐릭터 옐로우 소프트: `#FFEFB1`
   - 경고 오렌지: `#F39A1F`
   - 위험 오렌지: `#E27C00`
@@ -97,26 +94,26 @@ v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 �
 - 기존 회귀 테스트는 유지한다.
 - v0.3 범위 자동 검증을 최소 2건 추가한다.
   - 필수 1: 테마 토큰 적용 회귀(배경/컴포넌트 분리 정책)
-  - 필수 2: 캐릭터 자산 경로/렌더링 회귀(전신/얼굴 자산)
-- 아이콘 무결성 및 폰트 단일화 회귀 테스트는 기존 기준을 유지한다.
+  - 필수 2: 캐릭터 자산 경로/렌더링 회귀(전신 자산)
+- 웹 아이콘 미사용 정책 및 폰트 단일화 회귀 테스트는 기존 기준을 유지한다.
 
 ## 5) Deliverables
 
 1. v0.3 실행 PRD 문서
 2. v0.3 활성 backlog 항목
-3. 말티푸 캐릭터 리디자인 자산(전신/얼굴)
-4. 얼굴 기반 favicon/PWA 아이콘 세트
+3. 말티푸 캐릭터 리디자인 자산(전신)
+4. 웹 아이콘 미사용 정책 반영(manifest/index/file)
 5. 전 화면 UI beautify 반영
 6. v0.3 문서/검증 기준 동기화
 
 ## 6) Acceptance Criteria
 
-- 캐릭터 자산 파일 2종이 존재한다.
-  - `apps/miniapp/assets/characters/maltipoo_mascot.svg`
-  - `apps/miniapp/assets/characters/maltipoo_face.svg`
-- favicon은 `apps/miniapp/web/favicon.png`(32x32) 단일 파일만 유지되고, 추가 favicon 파일은 존재하지 않는다.
-- PWA 아이콘 4종(`192/512 + maskable`)이 `manifest.json`과 경로/사이즈/목적값까지 일치한다.
-- `AppPalette`에 v0.3 컬러 기준값(`#F3F4F6`, `#FFFFFF`, `#F7D248`, `#FFEFB1`, `#F39A1F`, `#E27C00`)이 반영된다.
+- 캐릭터 자산 파일은 `apps/miniapp/assets/characters/maltipoo_mascot.svg` 단일 전신 파일만 사용한다.
+- `apps/miniapp/assets/characters/maltipoo_face.svg`는 존재하지 않는다.
+- `apps/miniapp/web/favicon.png` 및 `apps/miniapp/web/icons/*` 파일이 존재하지 않는다.
+- `apps/miniapp/web/index.html`에 `rel="icon"` 및 `apple-touch-icon` 링크가 없다.
+- `apps/miniapp/web/manifest.json`의 `icons`가 빈 배열(`[]`)이다.
+- `AppPalette`에 v0.3 컬러 기준값(`#F3F4F6`, `#FFFFFF`, `#FBD1A2`, `#FFEFB1`, `#F39A1F`, `#E27C00`)이 반영된다.
 - v0.3 자동 검증 2건(테마 분리, 캐릭터 자산/렌더링)이 추가된다.
 - reduce motion 및 접근성 회귀 없이 기존 기능이 유지된다.
 - 문서 인덱스/백로그/체인지로그가 v0.3 활성 기준으로 일치한다.
@@ -127,8 +124,8 @@ v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 �
 
 - 리스크: 캐릭터 강조가 정보 가독성을 해칠 수 있음
   - 대응: 캐릭터 강조 영역을 Hero/브랜딩으로 제한, 본문 영역은 중립 톤 유지
-- 리스크: 아이콘 교체 후 플랫폼별 마스킹 손실
-  - 대응: 32/192/512 + maskable 크롭 시안 사전 점검
+- 리스크: 웹 아이콘 파일 잔존으로 정책 혼선 발생
+  - 대응: `release_hygiene_test.dart`에서 파일/링크/manifest 아이콘 부재를 고정 검증
 - 리스크: beautify 범위 확장으로 회귀 증가
   - 대응: 공통 토큰 우선 적용 + 기존 회귀 테스트/verify 유지
 
@@ -140,8 +137,8 @@ v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 �
 
 ## 9) Schedule
 
-1. 캐릭터/아이콘 스타일 가이드 확정
-2. 자산 제작(전신/얼굴 + favicon/PWA)
+1. 캐릭터/아이콘 정책 가이드 확정
+2. 자산 제작(전신) + 웹 아이콘 제거 반영
 3. 테마 토큰/공통 컴포넌트 beautify 반영
 4. 화면별 세부 보정(홈/알림/입력시트)
 5. 검증 및 문서 동기화
@@ -149,8 +146,8 @@ v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 �
 
 ## 10) Execution Linkage (Backlog / Runbook)
 
-- [PRD-v0.3][TODO-v0.3-001-캐릭터-리디자인] 말티푸 캐릭터(전신/얼굴) v0.3 자산 제작
-- [PRD-v0.3][TODO-v0.3-002-파비콘-PWA-얼굴통일] 얼굴 중심 favicon(32 단일) + PWA(192/512/maskable) 아이콘 세트 교체
+- [PRD-v0.3][TODO-v0.3-001-캐릭터-리디자인] 말티푸 캐릭터 전신 v0.3 자산 제작
+- [PRD-v0.3][TODO-v0.3-002-웹아이콘-제거] 인앱 배포 기준 웹 favicon/PWA 아이콘 참조 및 파일 제거
 - [PRD-v0.3][TODO-v0.3-003-컬러-테마-정비] 화이트/그레이/옐로우 정책 및 고정 hex 토큰 기반 테마 정비
 - [PRD-v0.3][TODO-v0.3-004-전화면-컴포넌트-뷰티파이] 홈/알림/입력시트 UI 일관성 개선
 - [PRD-v0.3][TODO-v0.3-005-모션-접근성-회귀점검] 절제된 모션 + reduce motion 유지 검증
@@ -159,11 +156,11 @@ v0.2 품질 정리 이후, v0.3에서는 제품의 첫 인상을 결정하는 �
 ## 11) Task Completion Contract (Evidence)
 
 - `TODO-v0.3-001-캐릭터-리디자인` 완료 기준:
-  - 증적: `apps/miniapp/assets/characters/maltipoo_mascot.svg`, `apps/miniapp/assets/characters/maltipoo_face.svg`
+  - 증적: `apps/miniapp/assets/characters/maltipoo_mascot.svg`
   - 검증: 홈 Hero 캐릭터 렌더링 회귀 없음
-- `TODO-v0.3-002-파비콘-PWA-얼굴통일` 완료 기준:
-  - 증적: `apps/miniapp/web/favicon.png`, `apps/miniapp/web/icons/Icon-192.png`, `apps/miniapp/web/icons/Icon-512.png`, `apps/miniapp/web/icons/Icon-maskable-192.png`, `apps/miniapp/web/icons/Icon-maskable-512.png`, `apps/miniapp/web/manifest.json`, `apps/miniapp/web/index.html`
-  - 검증: favicon 단일 32 유지 + 아이콘 경로/사이즈/maskable 목적값 일치
+- `TODO-v0.3-002-웹아이콘-제거` 완료 기준:
+  - 증적: `apps/miniapp/web/manifest.json`, `apps/miniapp/web/index.html`, `apps/miniapp/test/release_hygiene_test.dart`
+  - 검증: 웹 아이콘 파일/링크/manifest icons 부재
 - `TODO-v0.3-003-컬러-테마-정비` 완료 기준:
   - 증적: `apps/miniapp/lib/core/theme/app_palette.dart`, `apps/miniapp/lib/core/theme/app_theme.dart`
   - 검증: 화이트 컴포넌트 + 라이트 그레이 배경 분리 + v0.3 컬러 토큰값 반영

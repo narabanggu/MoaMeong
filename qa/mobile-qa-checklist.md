@@ -19,11 +19,11 @@
 ## 3) 리소스/브랜딩 체크
 
 - [ ] 폰트 구성(가족/파일 경로)이 현재 기준 문서와 일치한다.
-- [ ] 런타임 favicon은 `web/favicon.png`(32x32) 단일이며 `favicon-16/32/64.png`, `favicon.svg`는 존재하지 않는다.
-- [ ] favicon(32)과 PWA 아이콘(192/512, maskable)이 일관된 톤을 유지한다.
-- [ ] manifest 아이콘 경로/사이즈가 실제 파일과 일치한다.
-- [ ] `AppPalette` 고정 토큰(`F3F4F6`, `FFFFFF`, `F7D248`, `FFEFB1`, `F39A1F`, `E27C00`)이 기준 문서와 일치한다.
-- [ ] 화면에서 화이트 컴포넌트와 라이트 그레이 배경 구분이 명확하다.
+- [ ] 웹 favicon/PWA icon 파일이 저장소에 존재하지 않는다. (`apps/miniapp/web/favicon*`, `apps/miniapp/web/icons/*`)
+- [ ] `apps/miniapp/web/index.html`에 favicon/apple-touch-icon 링크가 없다.
+- [ ] `apps/miniapp/web/manifest.json`의 `icons`가 빈 배열(`[]`)이다.
+- [ ] `AppPalette` 고정 토큰(`F3F4F6`, `FFFFFF`, `FBD1A2`, `FFEFB1`, `FFF7D6`, `F39A1F`, `E27C00`)이 기준 문서와 일치한다.
+- [ ] 화면에서 화이트 컴포넌트와 라이트 그레이 배경 구분이 명확하고, 컬러 포인트가 캐릭터 영역 중심으로 유지된다.
 
 ## 4) 접근성/성능 체크
 
