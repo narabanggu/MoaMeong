@@ -62,6 +62,20 @@ void main() {
       expect(dimensions.width, entry.value);
       expect(dimensions.height, entry.value);
     }
+
+    const forbiddenFaviconFiles = <String>[
+      'web/favicon.svg',
+      'web/favicon-16.png',
+      'web/favicon-32.png',
+      'web/favicon-64.png',
+    ];
+    for (final path in forbiddenFaviconFiles) {
+      expect(
+        File(path).existsSync(),
+        isFalse,
+        reason: 'forbidden favicon file should not exist: $path',
+      );
+    }
   });
 
   test('폰트 설정은 SUIT 단일 구성이고 폰트 용량은 7MB 이하를 유지한다', () {
@@ -97,5 +111,29 @@ void main() {
       isTrue,
       reason: 'font bytes exceeded 7MB limit: $totalFontBytes',
     );
+  });
+
+  test('v0.3 컬러 토큰 고정값이 AppPalette에 반영되어 있다', () {
+    final paletteFile = File('lib/core/theme/app_palette.dart');
+    expect(paletteFile.existsSync(), isTrue);
+    final palette = paletteFile.readAsStringSync();
+
+    const requiredTokens = <String>[
+      'static const Color white = Color(0xFFFFFFFF);',
+      'static const Color paper = white;',
+      'static const Color background = Color(0xFFF3F4F6);',
+      'static const Color yellow = Color(0xFFF7D248);',
+      'static const Color yellowSoft = Color(0xFFFFEFB1);',
+      'static const Color orange = Color(0xFFF39A1F);',
+      'static const Color orangeDeep = Color(0xFFE27C00);',
+    ];
+
+    for (final token in requiredTokens) {
+      expect(
+        palette.contains(token),
+        isTrue,
+        reason: 'missing required palette token: $token',
+      );
+    }
   });
 }

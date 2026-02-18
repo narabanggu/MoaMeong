@@ -4,8 +4,8 @@ class AppPalette {
   AppPalette._();
 
   static const Color white = Color(0xFFFFFFFF);
-  static const Color paper = Color(0xFFFFFEFB);
-  static const Color background = white;
+  static const Color paper = white;
+  static const Color background = Color(0xFFF3F4F6);
 
   static const Color yellow = Color(0xFFF7D248);
   static const Color yellowSoft = Color(0xFFFFEFB1);
