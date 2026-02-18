@@ -1,6 +1,6 @@
-import 'package:moameong_miniapp/core/models/alert_signal.dart';
-import 'package:moameong_miniapp/core/models/subscription_item.dart';
-import 'package:moameong_miniapp/core/services/metrics_calculator.dart';
+import 'package:miniapp/core/models/alert_signal.dart';
+import 'package:miniapp/core/models/subscription_item.dart';
+import 'package:miniapp/core/services/metrics_calculator.dart';
 
 class AlertEvaluator {
   AlertEvaluator(this._metricsCalculator);

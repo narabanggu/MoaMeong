@@ -5,8 +5,8 @@
 
 ## 1) 최종 자산
 
-- 메인 캐릭터 SVG: `apps/miniapp/assets/characters/maltipoo_moameong.svg`
-- 메인 노출 위치: 홈 Hero 영역(`MoaMeongAnimatedMascot`)
+- 메인 캐릭터 SVG: `apps/miniapp/assets/characters/maltipoo_mascot.svg`
+- 메인 노출 위치: 홈 Hero 영역(`AnimatedMascotFace`)
 - 구독 목록/행 캐릭터 노출: 미사용(노출 경계 준수)
 
 ## 2) 스타일 기준 충족 여부

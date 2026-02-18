@@ -1,6 +1,6 @@
-# MoaMeong (모아멍)
+# 모아멍
 
-MoaMeong is a Flutter Web miniapp MVP for simple subscription tracking.
+모아멍은 간단한 구독 현황 관리를 위한 Flutter Web 미니앱 MVP입니다.
 
 ## Current MVP Scope
 
@@ -35,7 +35,8 @@ MoaMeong is a Flutter Web miniapp MVP for simple subscription tracking.
 
 ## Documentation
 
-- Active PRD: `.codex/PRD/PRD-v0.1-moameong-mvp-baseline.md`
+- Active PRD: `.codex/PRD/PRD-v0.2-quality-polish.md`
+- Completed baseline: `.codex/PRD/PRD-v0.1-mvp-baseline.md`
 - Backlog: `.codex/TODO/backlog.md`
 - Changelog: `.codex/changelog/CHANGELOG.md`
 - QA checklist: `qa/mobile-qa-checklist.md`

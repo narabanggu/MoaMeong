@@ -3,13 +3,13 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moameong_miniapp/core/theme/app_palette.dart';
-import 'package:moameong_miniapp/core/widgets/liquid_glass_card.dart';
+import 'package:miniapp/core/theme/app_palette.dart';
+import 'package:miniapp/core/widgets/liquid_glass_card.dart';
 
-const String kMoaMeongMascotAsset = 'assets/characters/maltipoo_moameong.svg';
+const String kMascotFaceAsset = 'assets/characters/maltipoo_mascot.svg';
 
-class MoaMeongBrandBar extends StatelessWidget {
-  const MoaMeongBrandBar({super.key});
+class MascotBrandBar extends StatelessWidget {
+  const MascotBrandBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class MoaMeongBrandBar extends StatelessWidget {
       tintColor: AppPalette.yellowPale,
       child: Row(
         children: <Widget>[
-          const MoaMeongMascot(size: 70),
+          const MascotFace(size: 70),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -66,8 +66,8 @@ class MoaMeongBrandBar extends StatelessWidget {
   }
 }
 
-class MoaMeongMascot extends StatelessWidget {
-  const MoaMeongMascot({
+class MascotFace extends StatelessWidget {
+  const MascotFace({
     super.key,
     this.size = 56,
   });
@@ -88,15 +88,15 @@ class MoaMeongMascot extends StatelessWidget {
         ),
       ),
       child: SvgPicture.asset(
-        kMoaMeongMascotAsset,
+        kMascotFaceAsset,
         fit: BoxFit.contain,
       ),
     );
   }
 }
 
-class MoaMeongAnimatedMascot extends StatefulWidget {
-  const MoaMeongAnimatedMascot({
+class AnimatedMascotFace extends StatefulWidget {
+  const AnimatedMascotFace({
     super.key,
     required this.size,
     required this.isUrgent,
@@ -112,10 +112,10 @@ class MoaMeongAnimatedMascot extends StatefulWidget {
   final VoidCallback onTap;
 
   @override
-  State<MoaMeongAnimatedMascot> createState() => _MoaMeongAnimatedMascotState();
+  State<AnimatedMascotFace> createState() => _AnimatedMascotFaceState();
 }
 
-class _MoaMeongAnimatedMascotState extends State<MoaMeongAnimatedMascot>
+class _AnimatedMascotFaceState extends State<AnimatedMascotFace>
     with TickerProviderStateMixin {
   static const Duration _idleDuration = Duration(milliseconds: 2400);
   static const Duration _reactionDuration = Duration(milliseconds: 360);
@@ -176,7 +176,7 @@ class _MoaMeongAnimatedMascotState extends State<MoaMeongAnimatedMascot>
   }
 
   @override
-  void didUpdateWidget(covariant MoaMeongAnimatedMascot oldWidget) {
+  void didUpdateWidget(covariant AnimatedMascotFace oldWidget) {
     super.didUpdateWidget(oldWidget);
     final urgencyChanged = oldWidget.isUrgent != widget.isUrgent;
     final reducedMotionChanged =
@@ -276,7 +276,7 @@ class _MoaMeongAnimatedMascotState extends State<MoaMeongAnimatedMascot>
           height: widget.size,
           child: AnimatedBuilder(
             animation: animation,
-            child: MoaMeongMascot(size: widget.size),
+            child: MascotFace(size: widget.size),
             builder: (context, child) {
               final idleScale = widget.reducedMotion
                   ? 1.0
@@ -387,8 +387,8 @@ class _BlinkLid extends StatelessWidget {
   }
 }
 
-class MoaMeongPlainEmptyState extends StatelessWidget {
-  const MoaMeongPlainEmptyState({
+class PlainEmptyState extends StatelessWidget {
+  const PlainEmptyState({
     super.key,
     required this.message,
     this.action,

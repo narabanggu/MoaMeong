@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moameong_miniapp/core/models/alert_signal.dart';
-import 'package:moameong_miniapp/core/theme/app_palette.dart';
-import 'package:moameong_miniapp/core/widgets/liquid_glass_card.dart';
-import 'package:moameong_miniapp/core/widgets/moameong_branding.dart';
+import 'package:miniapp/core/models/alert_signal.dart';
+import 'package:miniapp/core/theme/app_palette.dart';
+import 'package:miniapp/core/widgets/liquid_glass_card.dart';
+import 'package:miniapp/core/widgets/mascot_branding.dart';
 
 class AlertCenterPage extends StatelessWidget {
   const AlertCenterPage({
@@ -21,7 +21,7 @@ class AlertCenterPage extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: MoaMeongPlainEmptyState(
+            child: PlainEmptyState(
               message: '임박 알림이 없어요. 새 구독을 추가해 흐름을 점검해보세요.',
               action: onAddSubscription,
               actionLabel: '구독 추가',

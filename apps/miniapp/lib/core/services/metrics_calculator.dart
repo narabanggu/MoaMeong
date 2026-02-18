@@ -1,5 +1,5 @@
-import 'package:moameong_miniapp/core/models/cost_snapshot.dart';
-import 'package:moameong_miniapp/core/models/subscription_item.dart';
+import 'package:miniapp/core/models/cost_snapshot.dart';
+import 'package:miniapp/core/models/subscription_item.dart';
 
 class MetricsCalculator {
   double toMonthlyNormalized(SubscriptionItem item) {

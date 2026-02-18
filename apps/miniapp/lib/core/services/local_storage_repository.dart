@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:moameong_miniapp/core/models/subscription_item.dart';
+import 'package:miniapp/core/models/subscription_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageLoadResult {
@@ -14,7 +14,7 @@ class LocalStorageLoadResult {
 }
 
 class LocalStorageRepository {
-  static const String _stateKey = 'moameong_state_v1';
+  static const String _stateKey = 'subscription_state_v1';
 
   Future<LocalStorageLoadResult> loadState() async {
     final prefs = await SharedPreferences.getInstance();

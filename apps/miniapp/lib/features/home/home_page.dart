@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:moameong_miniapp/core/models/alert_signal.dart';
-import 'package:moameong_miniapp/core/models/cost_snapshot.dart';
-import 'package:moameong_miniapp/core/models/subscription_item.dart';
-import 'package:moameong_miniapp/core/services/metrics_calculator.dart';
-import 'package:moameong_miniapp/core/theme/app_palette.dart';
-import 'package:moameong_miniapp/core/widgets/liquid_glass_card.dart';
-import 'package:moameong_miniapp/core/widgets/moameong_branding.dart';
+import 'package:miniapp/core/models/alert_signal.dart';
+import 'package:miniapp/core/models/cost_snapshot.dart';
+import 'package:miniapp/core/models/subscription_item.dart';
+import 'package:miniapp/core/services/metrics_calculator.dart';
+import 'package:miniapp/core/theme/app_palette.dart';
+import 'package:miniapp/core/widgets/liquid_glass_card.dart';
+import 'package:miniapp/core/widgets/mascot_branding.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 8),
             if (trackableSubscriptions.isEmpty)
-              MoaMeongPlainEmptyState(
+              PlainEmptyState(
                 message: '아직 구독 데이터가 없어요. 우측 상단 버튼으로 첫 구독을 추가해보세요.',
                 action: widget.onAddSubscription,
                 actionLabel: '구독 추가',
@@ -282,7 +282,7 @@ class _HeroBriefingCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          MoaMeongAnimatedMascot(
+          AnimatedMascotFace(
             size: mascotSize,
             isUrgent: briefing.isUrgent,
             isReacting: isMascotReacting,

@@ -1,5 +1,5 @@
-name: moameong_miniapp
-description: MoaMeong Flutter Web scaffold for C1 + C3 integrated MVP.
+name: miniapp
+description: 모아멍 Flutter Web scaffold for C1 + C3 integrated MVP.
 publish_to: "none"
 version: 0.1.0+1
 
@@ -20,7 +20,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/characters/maltipoo_moameong.svg
+    - assets/characters/maltipoo_mascot.svg
   fonts:
     - family: Pretendard
       fonts:

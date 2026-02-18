@@ -1,4 +1,4 @@
-# moameong_miniapp
+# miniapp
 
 A new Flutter project.
 

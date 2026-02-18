@@ -1,4 +1,4 @@
-# PRD-v0.1: MoaMeong MVP Baseline (Character & Home Hero)
+# PRD-v0.1: 모아멍 MVP Baseline (Character & Home Hero)
 
 ## Document Info
 - PRD ID: PRD-v0.1
@@ -189,11 +189,11 @@
 
 - 완료 기준: `Execution Linkage`의 TODO-004 항목 전부 완료, backlog active pending 없음
 - `TODO-004-캐릭터-말티푸-v1`: 완료
-  - 증적: `qa/character-maltipoo-v1-signoff-2026-02-16.md`, `apps/miniapp/assets/characters/maltipoo_moameong.svg`
+  - 증적: `qa/character-maltipoo-v1-signoff-2026-02-16.md`, `apps/miniapp/assets/characters/maltipoo_mascot.svg`
 - `TODO-004-캐릭터-클릭애니메이션`: 완료
   - 증적: `apps/miniapp/lib/features/home/home_page.dart`, `apps/miniapp/test/widget_test.dart`
 - `TODO-004-캐릭터-2D애니메이션`: 완료
-  - 증적: `apps/miniapp/lib/core/widgets/moameong_branding.dart`, `apps/miniapp/test/widget_test.dart`
+  - 증적: `apps/miniapp/lib/core/widgets/mascot_branding.dart`, `apps/miniapp/test/widget_test.dart`
 - `TODO-004-홈히어로-확대`: 완료
   - 증적: `apps/miniapp/lib/features/home/home_page.dart`, `apps/miniapp/test/widget_test.dart`
 - `TODO-004-다마고찌-톤가이드`: 완료

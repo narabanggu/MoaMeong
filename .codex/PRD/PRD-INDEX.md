@@ -2,7 +2,8 @@
 
 ## Active PRD
 
-1. `PRD-v0.1-moameong-mvp-baseline.md`: 현재 릴리즈 기준 PRD(v0.1)
+1. `PRD-v0.2-quality-polish.md`: 현재 실행 기준 PRD(v0.2)
+2. `PRD-v0.1-mvp-baseline.md`: 완료된 릴리즈 기준선(v0.1)
 
 ## Common Template
 

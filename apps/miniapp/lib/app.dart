@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:moameong_miniapp/core/models/subscription_item.dart';
-import 'package:moameong_miniapp/core/services/alert_evaluator.dart';
-import 'package:moameong_miniapp/core/services/local_storage_repository.dart';
-import 'package:moameong_miniapp/core/services/metrics_calculator.dart';
-import 'package:moameong_miniapp/core/theme/app_palette.dart';
-import 'package:moameong_miniapp/core/theme/app_theme.dart';
-import 'package:moameong_miniapp/features/alerts/alerts_drawer.dart';
-import 'package:moameong_miniapp/features/home/home_page.dart';
-import 'package:moameong_miniapp/features/subscriptions/subscription_form_sheet.dart';
+import 'package:miniapp/core/models/subscription_item.dart';
+import 'package:miniapp/core/services/alert_evaluator.dart';
+import 'package:miniapp/core/services/local_storage_repository.dart';
+import 'package:miniapp/core/services/metrics_calculator.dart';
+import 'package:miniapp/core/theme/app_palette.dart';
+import 'package:miniapp/core/theme/app_theme.dart';
+import 'package:miniapp/features/alerts/alerts_drawer.dart';
+import 'package:miniapp/features/home/home_page.dart';
+import 'package:miniapp/features/subscriptions/subscription_form_sheet.dart';
 
-class MoaMeongApp extends StatelessWidget {
-  const MoaMeongApp({
+class MiniAppRoot extends StatelessWidget {
+  const MiniAppRoot({
     super.key,
     this.nowProvider = DateTime.now,
     this.reducedMotionOverride,

@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:moameong_miniapp/core/models/subscription_item.dart';
-import 'package:moameong_miniapp/core/theme/app_palette.dart';
+import 'package:miniapp/core/models/subscription_item.dart';
+import 'package:miniapp/core/theme/app_palette.dart';
 
 class SubscriptionFormSheet extends StatefulWidget {
   const SubscriptionFormSheet({

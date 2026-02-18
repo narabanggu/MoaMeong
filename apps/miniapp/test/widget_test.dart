@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:moameong_miniapp/app.dart';
-import 'package:moameong_miniapp/core/widgets/moameong_branding.dart';
+import 'package:miniapp/app.dart';
+import 'package:miniapp/core/widgets/mascot_branding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -18,7 +18,7 @@ void main() {
   }) async {
     SharedPreferences.setMockInitialValues(
       <String, Object>{
-        'moameong_state_v1': jsonEncode(
+        'subscription_state_v1': jsonEncode(
           <String, dynamic>{
             'subscriptions': subscriptions,
           },
@@ -30,7 +30,7 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump();
     await tester.pumpWidget(
-      MoaMeongApp(
+      MiniAppRoot(
         nowProvider: nowProvider ?? () => fixedNow,
         reducedMotionOverride: reducedMotionOverride,
       ),
@@ -68,8 +68,8 @@ void main() {
     expect(find.text('월환산 총액'), findsOneWidget);
     expect(find.byIcon(Icons.notifications_none_rounded), findsOneWidget);
     expect(find.byIcon(Icons.add_circle_outline_rounded), findsOneWidget);
-    expect(find.byType(MoaMeongMascot), findsOneWidget);
-    expect(find.byType(MoaMeongPlainEmptyState), findsOneWidget);
+    expect(find.byType(MascotFace), findsOneWidget);
+    expect(find.byType(PlainEmptyState), findsOneWidget);
     expect(find.text('홈'), findsNothing);
     expect(find.text('요약'), findsNothing);
   });
@@ -87,17 +87,17 @@ void main() {
 
     await pumpApp(tester, subscriptions: subscriptions);
 
-    final initialMascot = tester.widget<MoaMeongMascot>(
-      find.byType(MoaMeongMascot),
+    final initialMascot = tester.widget<MascotFace>(
+      find.byType(MascotFace),
     );
     expect(initialMascot.size, closeTo(122, 0.01));
 
     await tester.drag(find.byType(ListView), const Offset(0, -30));
     await tester.pump(const Duration(milliseconds: 120));
 
-    expect(find.byType(MoaMeongMascot), findsOneWidget);
-    final collapsedMascot = tester.widget<MoaMeongMascot>(
-      find.byType(MoaMeongMascot),
+    expect(find.byType(MascotFace), findsOneWidget);
+    final collapsedMascot = tester.widget<MascotFace>(
+      find.byType(MascotFace),
     );
     expect(collapsedMascot.size, lessThan(initialMascot.size));
     expect(collapsedMascot.size, greaterThan(82));
@@ -152,7 +152,7 @@ void main() {
 
     expect(find.byKey(const ValueKey<String>('mascot-state-hint-urgent')),
         findsOneWidget);
-    final mascotFinder = find.byType(MoaMeongAnimatedMascot);
+    final mascotFinder = find.byType(AnimatedMascotFace);
     expect(mascotFinder, findsOneWidget);
 
     await tester.tap(mascotFinder);
@@ -188,7 +188,7 @@ void main() {
       nowProvider: () => now,
     );
 
-    final mascotFinder = find.byType(MoaMeongAnimatedMascot);
+    final mascotFinder = find.byType(AnimatedMascotFace);
     expect(mascotFinder, findsOneWidget);
 
     await tester.tap(mascotFinder);
@@ -283,7 +283,7 @@ void main() {
     );
 
     await pumpApp(tester, subscriptions: subscriptions);
-    expect(find.byType(MoaMeongMascot), findsOneWidget);
+    expect(find.byType(MascotFace), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.notifications_none_rounded));
     await tester.pump(const Duration(milliseconds: 350));
@@ -293,11 +293,11 @@ void main() {
     expect(
       find.descendant(
         of: drawerFinder,
-        matching: find.byType(MoaMeongMascot),
+        matching: find.byType(MascotFace),
       ),
       findsNothing,
     );
-    expect(find.byType(MoaMeongMascot), findsOneWidget);
+    expect(find.byType(MascotFace), findsOneWidget);
   });
 
   testWidgets('모션 축소 모드에서는 캐릭터 루프 모션을 완화하고 반응만 유지한다',
@@ -315,7 +315,7 @@ void main() {
       reducedMotionOverride: true,
     );
 
-    final mascotFinder = find.byType(MoaMeongAnimatedMascot);
+    final mascotFinder = find.byType(AnimatedMascotFace);
     expect(mascotFinder, findsOneWidget);
 
     await tester.pump(const Duration(seconds: 6));
@@ -357,7 +357,7 @@ void main() {
     await pumpApp(tester, subscriptions: subscriptions);
 
     final listFinder = find.byType(ListView);
-    final mascotFinder = find.byType(MoaMeongAnimatedMascot);
+    final mascotFinder = find.byType(AnimatedMascotFace);
     expect(listFinder, findsOneWidget);
     expect(mascotFinder, findsOneWidget);
 
@@ -375,7 +375,7 @@ void main() {
 
     await tester.pump(const Duration(milliseconds: 420));
     expect(find.byType(ListView), findsOneWidget);
-    expect(find.byType(MoaMeongMascot), findsOneWidget);
+    expect(find.byType(MascotFace), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -411,7 +411,7 @@ void main() {
       );
 
       expect(find.byType(ListView), findsOneWidget);
-      expect(find.byType(MoaMeongMascot), findsOneWidget);
+      expect(find.byType(MascotFace), findsOneWidget);
       expect(find.textContaining('7일 내 결제'), findsOneWidget);
       expect(tester.takeException(), isNull);
     }
