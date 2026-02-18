@@ -4,7 +4,7 @@
 - PRD ID: PRD-v0.2
 - Version: v0.2 (Polish Cycle)
 - Created: 2026-02-16
-- Updated: 2026-02-16
+- Updated: 2026-02-18
 - Owners: 리더멍, 픽셀멍, 체크멍, 가드멍
 - Source: v0.1 완료 점검 후 보완 과제(용량/브랜딩 일관성/운영 자동화)
 
@@ -45,7 +45,7 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
 ### 4-1) Asset & Font Hygiene
 
 - 앱에서 사용하지 않는 폰트 자산은 저장소 기준으로 정리한다.
-- Flutter 번들에 포함되는 폰트는 `Pretendard`만 유지한다.
+- Flutter 번들에 포함되는 폰트는 단일 브랜드 폰트(`SUIT`)만 유지한다.
 - 자산 정리 후에도 텍스트 렌더링 회귀가 없어야 한다.
 - 산출물 검증:
   - `pubspec.yaml` 폰트 선언 단일화 확인
@@ -72,15 +72,15 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
   - `flutter build web --release`
 - 실패 시 즉시 중단되는 순차 실행 정책을 사용한다.
 - 표준 진입점:
-  - 스크립트 파일: `scripts/verify_v0_2.sh`
-  - 실행 명령: `bash scripts/verify_v0_2.sh`
+  - 스크립트 파일: `scripts/verify.sh`
+  - 실행 명령: `bash scripts/verify.sh`
 
 ### 4-4) Regression Guard Expansion
 
 - v0.1 핵심 테스트(11개)는 유지한다.
 - v0.2 보완 범위에 대한 자동 검증 최소 2개를 추가한다.
   - 필수 1: 아이콘/manifest 리소스 참조 무결성 검증
-  - 필수 2: 폰트 설정 단일화(`Pretendard` only) 회귀 검증
+  - 필수 2: 폰트 설정 단일화(`SUIT` only) 회귀 검증
 - 접근성 최종 점검 항목은 QA 체크리스트에 유지한다.
 
 ### 4-5) Documentation Sync
@@ -96,7 +96,7 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
 1. v0.2 실행 PRD 문서
 2. v0.2 backlog 항목(우선순위/완료 기준 포함)
 3. 브랜드 통일 웹 아이콘 세트(파비콘 + PWA)
-4. 검증 실행 표준(`scripts/verify_v0_2.sh`)
+4. 검증 실행 표준(`scripts/verify.sh`)
 5. v0.2 QA 결과 문서(체크리스트/리포트, v0.2 파일명 규칙)
 6. 동기화된 운영 문서 세트
 
@@ -145,12 +145,12 @@ v0.1에서 기능/QA 완료 상태를 확보했으므로, v0.2에서는 릴리�
 
 - `TODO-v0.2-001-폰트-에셋-정리` 완료 기준:
   - 증적: `apps/miniapp/pubspec.yaml`, `apps/miniapp/assets/fonts`
-  - 검증: `bash scripts/verify_v0_2.sh` 통과
+  - 검증: `bash scripts/verify.sh` 통과
 - `TODO-v0.2-002-PWA-아이콘-통일` 완료 기준:
   - 증적: `apps/miniapp/web/favicon.svg`, `apps/miniapp/web/favicon.png`, `apps/miniapp/web/icons/*`, `apps/miniapp/web/manifest.json`
   - 검증: 아이콘 16/32/64/192/512 가독성 확인 및 QA artifact 저장
 - `TODO-v0.2-003-검증-자동화` 완료 기준:
-  - 증적: `scripts/verify_v0_2.sh`, `README.md` 실행 가이드
+  - 증적: `scripts/verify.sh`, `README.md` 실행 가이드
   - 검증: 비정상 종료 코드 전파 + 3단계(analyze/test/build) 로그 확인
 - `TODO-v0.2-004-회귀테스트-2건추가` 완료 기준:
   - 증적: `apps/miniapp/test/widget_test.dart`(또는 동등 테스트 파일)

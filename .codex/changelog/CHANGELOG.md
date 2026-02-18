@@ -4,6 +4,8 @@ Format: Date / Summary / Owner
 
 ## Entries (v0.1 ~ v0.2)
 
+- 2026-02-18 / Completed PRD-v0.2 quality polish: removed unused font assets (`assets/fonts` 25MB -> 1.5MB), added release hygiene regression tests (+2 for manifest/icon integrity and SUIT-only font guard), aligned favicon set (16/32/64 + svg/png) and verify script/docs (`verify.sh`), and finalized v0.2 QA artifacts to Pass / 픽셀멍, 체크멍, 리더멍
+
 - 2026-02-16 / Opened PRD-v0.2 quality polish cycle: documented post-v0.1 improvement scope in detail (asset/font hygiene, PWA icon consistency, verification automation, regression guard expansion), switched active PRD/backlog/docs index to v0.2 execution baseline / 리더멍, 체크멍
 
 - 2026-02-16 / Finalized PRD-v0.1 completion sync: TODO-004 전체 완료 상태를 PRD/Backlog/QA 증적으로 고정하고 운영 문서 링크를 일관화 / 리더멍, 체크멍

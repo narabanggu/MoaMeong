@@ -30,7 +30,7 @@ class AppTheme {
       borderRadius: BorderRadius.circular(16),
     );
 
-    const fontFamilyName = 'Pretendard';
+    const fontFamilyName = 'SUIT';
     final baseTextTheme =
         ThemeData.light().textTheme.apply(fontFamily: fontFamilyName);
 

@@ -22,6 +22,6 @@ flutter:
   assets:
     - assets/characters/maltipoo_mascot.svg
   fonts:
-    - family: Pretendard
+    - family: SUIT
       fonts:
-        - asset: assets/fonts/Pretendard/PretendardVariable.ttf
+        - asset: assets/fonts/SUIT/SUIT-Variable.ttf

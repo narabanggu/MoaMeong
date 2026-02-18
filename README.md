@@ -23,8 +23,13 @@
 - Palette: white + yellow (orange only for warning accents)
 - Material: liquid-glass UI components
 - Mascot: maltipoo-style 2D character
-- Favicon: maltipoo face-only icon (`apps/miniapp/web/favicon.svg`, `apps/miniapp/web/favicon.png`)
-- App font: Pretendard
+- Favicon: maltipoo face-only icon (`apps/miniapp/web/favicon.svg`, `apps/miniapp/web/favicon-16.png`, `apps/miniapp/web/favicon-32.png`, `apps/miniapp/web/favicon-64.png`)
+- App font: SUIT
+
+## Verification
+
+- Run from repository root: `bash scripts/verify.sh`
+- This command runs `flutter analyze -> flutter test -> flutter build web --release` in order and stops immediately on failure.
 
 ## Out of Scope
 
@@ -39,6 +44,8 @@
 - Completed baseline: `.codex/PRD/PRD-v0.1-mvp-baseline.md`
 - Backlog: `.codex/TODO/backlog.md`
 - Changelog: `.codex/changelog/CHANGELOG.md`
-- QA checklist: `qa/mobile-qa-checklist.md`
+- QA checklist (v0.2): `qa/mobile-qa-checklist-v0.2-2026-02-18.md`
+- QA report (v0.2): `qa/mobile-qa-report-v0.2-2026-02-18.md`
+- QA checklist template: `qa/mobile-qa-checklist.md`
 - QA report template: `qa/mobile-qa-report-template.md`
 - Docs index (KR): `docs/docs-index-ko.md`
