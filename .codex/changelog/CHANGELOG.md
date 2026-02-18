@@ -2,7 +2,9 @@
 
 Format: Date / Summary / Owner
 
-## Entries (v0.1 ~ v0.2)
+## Entries (v0.1 ~ v0.3)
+
+- 2026-02-18 / Opened PRD-v0.3 visual refresh cycle: promoted v0.3 as active execution PRD, defined scope for maltipoo character redesign + favicon/PWA face-icon consistency + app-wide UI beautify + white/gray/yellow color policy, and seeded active TODO backlog for implementation / 리더멍, 뷰티멍, 픽셀멍
 
 - 2026-02-18 / Completed PRD-v0.2 quality polish: removed unused font assets (`assets/fonts` 25MB -> 1.5MB), added release hygiene regression tests (+2 for manifest/icon integrity and SUIT-only font guard), aligned favicon set (single 32px png + PWA 192/512 maskable), standardized verification entrypoint (`verify.sh`), and switched QA docs policy to template-based tracking (no per-version QA artifact commits) / 픽셀멍, 체크멍, 리더멍
 

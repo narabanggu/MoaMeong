@@ -2,6 +2,13 @@
 
 모아멍은 간단한 구독 현황 관리를 위한 Flutter Web 미니앱 MVP입니다.
 
+## v0.3 Focus (In Progress)
+
+- 말티푸 캐릭터 디자인 개선(레퍼런스 톤 기반)
+- 얼굴 중심 favicon + PWA 아이콘 일관화
+- 전 화면 UI 컴포넌트 beautify
+- 컬러 정책 정리: 화이트 컴포넌트 + 라이트 그레이 배경 + 캐릭터 옐로우 포인트
+
 ## Current MVP Scope
 
 1. One-page home flow (mobile-first)
@@ -20,7 +27,7 @@
 ## Design Baseline
 
 - Tone: clean miniapp style
-- Palette: white + yellow (orange only for warning accents)
+- Palette: white components + light gray background + yellow mascot accents (orange only for warning accents)
 - Material: liquid-glass UI components
 - Mascot: maltipoo-style 2D character
 - Favicon: maltipoo face-only icon (`apps/miniapp/web/favicon.png`, 32x32)
@@ -40,8 +47,8 @@
 
 ## Documentation
 
-- Active PRD: `.codex/PRD/PRD-v0.2-quality-polish.md`
-- Completed baseline: `.codex/PRD/PRD-v0.1-mvp-baseline.md`
+- Active PRD: `.codex/PRD/PRD-v0.3-visual-refresh.md`
+- Completed PRD (latest first): `.codex/PRD/PRD-v0.2-quality-polish.md`, `.codex/PRD/PRD-v0.1-mvp-baseline.md`
 - Backlog: `.codex/TODO/backlog.md`
 - Changelog: `.codex/changelog/CHANGELOG.md`
 - QA checklist template: `qa/mobile-qa-checklist.md`

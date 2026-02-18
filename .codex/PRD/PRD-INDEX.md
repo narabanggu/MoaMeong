@@ -2,8 +2,12 @@
 
 ## Active PRD
 
-1. `PRD-v0.2-quality-polish.md`: 현재 실행 기준 PRD(v0.2)
-2. `PRD-v0.1-mvp-baseline.md`: 완료된 릴리즈 기준선(v0.1)
+1. `PRD-v0.3-visual-refresh.md`: 현재 실행 기준 PRD(v0.3)
+
+## Completed PRD
+
+1. `PRD-v0.2-quality-polish.md`: 완료된 품질 정리 기준선(v0.2)
+2. `PRD-v0.1-mvp-baseline.md`: 완료된 MVP 릴리즈 기준선(v0.1)
 
 ## Common Template
 
